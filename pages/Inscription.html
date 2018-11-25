@@ -41,23 +41,28 @@
 
 	<main>
 
-		<h1>Mon compte</h1>
 
-		<section class="connexion" action ="Connexion.php">
-			
+		<h1>Inscription</h1>
 
+		<form class="formulaire" action="inscription.php" method="post">
 
-		</section>
+			<input class="field" type="text" name="nom" placeholder="*Nom" /><br/>
 
+			<input class="field" type="text" name="prenom" placeholder="*Prenom" /><br/>
 
-		<section class="inscription">
-			
+			<input class="field" type="text" name="pseudo" placeholder="*Pseudo" /><br/>
 
-			<form action = "Inscription.html" method = "get">
-			   <input type = "submit" name = "inscription" value = "Créer un compte">
-  			</form>
+			<input class="field" type="password" name="mdp" placeholder="*Mot de passe" /><br/>
 
-		</section>
+			<input class="field" type="password" name="mdpVerif" placeholder="*Confirmer mot de passe" /><br/>
+
+			<input class="field" type="text" name="mail" placeholder="*E-mail" /><br/>
+
+			<input class="field" type="submit" value="M'inscrire"/>
+
+		</form>
+
+	
 
 
 	</main>

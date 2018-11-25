@@ -14,7 +14,7 @@
 	
 		
 		<div id = "logo_nom">
-			<a href="Accueil.php"> <img href="Accueil" class="logo" src="../images/logo.png" alt="logo"></a>
+			<a href="Accueil.html"> <img href="Accueil" class="logo" src="../images/logo.png" alt="logo"></a>
 			<a  id = "macronmania" href="Accueil.php"> Macronmania <a/> 
 		</div>
 
@@ -26,7 +26,7 @@
 
 		<nav>	
 			<div><a href="Contact.html">Contact</a></div>
-			<div><a href="compte.html">Compte</a></div>
+			<div><a href="Compte.html">Compte</a></div>
 		</nav>
 	    
 	    <a href='panier.php'>PANIER</a>
