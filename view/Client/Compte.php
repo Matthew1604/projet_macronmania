@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+	<html>
+
+	<head>
+		
+		<title>MacronMania</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		
+	</head>
+
+
+	<header>
+			
+		<div id="logo_nom">
+			<a href="?action=Accueil"> <img href="Accueil" class="logo" src="images/logo.png" alt="logo"> </a>
+			<a id = "macronmania" href="?action=Accueil"> Macronmania <a/>
+		</div>
+
+		<form method = "get">
+			<input type="hidden" name="action" value="recherche">
+			<input type = "search" name = "termes">
+			<input type = "submit" value = "Rechercher">
+	  	</form>
+
+
+		<nav>
+			<div><a href="?action=Contact">Contact</a></div>
+			<div><a href="?action=Compte">Compte</a></div>
+		</nav>
+	    
+	    <a href='panier.php'>PANIER</a>
+	    
+	</header>
+
+	<body>
+
+		<cite>Traversez la rue pour trouver le meilleur jeu de votre vie</cite>
+
+		<main>
+
+			<h1>Mon compte</h1>
+
+			<section class="connexion" action ="Connexion.php">
+				
+
+
+			</section>
+
+
+			<section class="inscription">
+				
+
+				<form action = "Inscription.html" method = "get">
+				   <input type = "submit" name = "inscription" value = "Créer un compte">
+	  			</form>
+
+			</section>
+
+
+		</main>
+
+	</body>
+
+
+
+	</html>
+<!--***********************************************************************************************************-->
