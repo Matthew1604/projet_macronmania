@@ -5,9 +5,14 @@ html {
 	height:100%;
 	margin:0;
  	padding:0;
+ 	line-height: 1em;
  	/*background-image:url(../images/image.jpg) ; 
  	background-repeat:no-repeat;
  	background-size: cover;*/
+}
+
+cite {
+	color: white;
 }
 
 header{
@@ -43,11 +48,12 @@ header > nav > div {
 	color : #27416b;
 	font-size : 40px;
 	text-decoration : none;
-	align-items: center;
+	padding-left: 20px;
 }
 
 #logo_nom{
 	display : flex;
+	align-items: center;
 }
 
 
