@@ -4,9 +4,7 @@ html {
 	margin:0;
  	padding:0;
  	line-height: 1em;
- 	/*background-image:url(../images/image.jpg) ; 
- 	background-repeat:no-repeat;
- 	background-size: cover;*/
+ 	font-family: Arial;
 }
 
 header{
@@ -71,10 +69,15 @@ body{
 	padding: 15px !important;
 }
 
+.searchBar {
+	height: 35px;
+	font-size: 15pt;
+}
+
 button {
 	position: absolute;
 	display: block;
-	top: 20px;
+	top: 26px;
 	right: 22px;
 	color: #fff;
 	width: 24px;
@@ -95,6 +98,10 @@ main {
 
 main > h1 {
 	text-align: center;
+}
+
+p {
+	margin-left: 8px;
 }
 
 header >a , header>nav>div>a {
