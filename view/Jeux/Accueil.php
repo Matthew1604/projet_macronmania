@@ -18,9 +18,11 @@
 		</div>
 
 		<form method = "get">
-			<input type="hidden" name="action" value="recherche">
-			<input type = "search" name = "termes">
-			<input type = "submit" value = "Rechercher">
+			<div class="formSearch">
+				<input type="hidden" name="action" value="recherche">
+				<input type = "text" placeholder="Recherche..." autocomplete="off" name = "termes">
+				<button type="submit" name="Rechercher"></button>
+			</div>
 	  	</form>
 
 
@@ -35,7 +37,7 @@
 
 	<body>
 
-		<cite>Traversez la rue pour trouver le meilleur jeu de votre vie</cite>
+		<cite><h3>Traversez la rue pour trouver le meilleur jeu de votre vie</h3></cite>
 
 		<main>
 
@@ -65,7 +67,9 @@
 
 	</body>
 
+	<h1><footer>
 
+	</footer>
 
 	</html>
 <!--***********************************************************************************************************-->

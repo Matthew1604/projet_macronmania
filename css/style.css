@@ -1,5 +1,3 @@
-
-
 /* Présentation */
 html {
 	height:100%;
@@ -9,10 +7,6 @@ html {
  	/*background-image:url(../images/image.jpg) ; 
  	background-repeat:no-repeat;
  	background-size: cover;*/
-}
-
-cite {
-	color: white;
 }
 
 header{
@@ -59,7 +53,7 @@ header > nav > div {
 
 body{
 	margin: 0 auto;
-	background-image: url("../images/fond.jpg");
+	background-image: url(../images/fond.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -69,15 +63,38 @@ body{
 	
 }
 
+.formSearch {
+	position: relative;
+	height: 100%;
+	box-sizing: border-box;
+	margin-left: 7px;
+	padding: 15px !important;
+}
+
+button {
+	position: absolute;
+	display: block;
+	top: 20px;
+	right: 22px;
+	color: #fff;
+	width: 24px;
+	height: 22px;
+	background-image: url(../images/search.png);
+	border: 0;
+}
+
 main {
 	margin-top: 65px;
 	margin-left: 10%;
 	width:80%;
 	background-color: #e8e9ed;
-	position:relative;
 	display:flex;
 	flex-direction: column;
 	box-shadow: 5px 10px 25px 20px black;
+}
+
+main > h1 {
+	text-align: center;
 }
 
 header >a , header>nav>div>a {
@@ -85,18 +102,17 @@ header >a , header>nav>div>a {
 }
 
 cite {
+	color: white;
 	margin-top: 77px;
 	text-align: center;
 }
 
-
-/********Accueil*********/
-
-main > h1 {
-	text-align: center;
+footer {
+	width: 100%;
+	height: 150px;
 }
 
-/********Contact*********/
+/********Contact&Compte*********/
 
 
 .formulaire {
@@ -125,10 +141,6 @@ main > h1 {
 	width : 15%;
 	height: 50px;
 }
-
-
-
-
 
 /*******images******/
 

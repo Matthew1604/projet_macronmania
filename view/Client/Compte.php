@@ -35,7 +35,7 @@
 
 	<body>
 
-		<cite>Traversez la rue pour trouver le meilleur jeu de votre vie</cite>
+		<cite><h3>Traversez la rue pour trouver le meilleur jeu de votre vie</h3></cite>
 
 		<main>
 
@@ -62,7 +62,9 @@
 
 	</body>
 
-
+	<footer>
+		
+	</footer><h1>
 
 	</html>
 <!--***********************************************************************************************************-->
