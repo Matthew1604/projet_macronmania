@@ -21,7 +21,7 @@
 			<div class="formSearch">
 				<input type="hidden" name="action" value="recherche">
 				<input type = "text" class="searchBar" placeholder="Recherche..." autocomplete="off" name = "termes">
-				<button type="submit" name="Rechercher"></button>
+				<button type="submit"></button>
 			</div>
 	  	</form>
 
