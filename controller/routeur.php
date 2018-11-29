@@ -7,9 +7,8 @@
 	// Appel de la méthode statique $action de ControllerVoiture
 	try {
 		ControllerJeux::$action();
-		ControllerClient::$action();
 	} catch (Exception $e) {
-		echo "non";
+		ControllerClient::$action();
 	}
 
 ?>
