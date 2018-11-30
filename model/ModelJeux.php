@@ -37,6 +37,10 @@
 			return $this->plateforme;
 		}
 
+		public function getImage() {
+			return $this->image;
+		}
+
 
 		/************************************************************************************/
 		/************************************************************************************/
@@ -60,7 +64,7 @@
 
 			if (isset($recherche)) {
 				 $recherche = strtolower($recherche); // mets les caractère en minuscule
-				 $res = Model::$pdo -> prepare("SELECT nomJeu, plateforme FROM Jeux WHERE nomJeu LIKE ?"); //sélectionne les jeux qui contiennent des mots qui ressemblent à la requête du client.
+				 $res = Model::$pdo -> prepare("SELECT nomJeu, plateforme, image FROM Jeux WHERE nomJeu LIKE ?"); //sélectionne les jeux qui contiennent des mots qui ressemblent à la requête du client.
 				 $res->execute(array("%".$recherche."%"));
 				 $res->setFetchMode(PDO::FETCH_CLASS, 'ModelJeux');
 				 $res = $res->fetchAll();
