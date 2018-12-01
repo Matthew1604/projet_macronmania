@@ -72,6 +72,7 @@ body{
 .searchBar {
 	height: 35px;
 	font-size: 15pt;
+	border-radius: 4px;
 }
 
 .searchBar:hover {
@@ -104,8 +105,16 @@ main > h1 {
 	text-align: center;
 }
 
-main > h2 {
+.welcome {
+	font-style: italic;
+}
+
+.noResult {
 	text-align: center;
+}
+
+.select-genre {
+	margin: auto;
 }
 
 p {
@@ -113,7 +122,7 @@ p {
 	margin-bottom: 30px;
 }
 
-header > a , header>nav>div>a {
+header > a, header > nav > div > a {
 	text-decoration: none;
 }
 

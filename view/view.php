@@ -31,7 +31,7 @@
 				<div><a href="?action=Compte">Compte</a></div>
 			</nav>
 		    
-		    <a href='panier.php'>PANIER</a>
+		    <a href='?action=panier'>PANIER</a>
 
 		</header>
 
@@ -48,7 +48,7 @@
 				require $filepath;
 			?>
 
-		</main>
+			</main>
 		</body>
 
 		<footer>

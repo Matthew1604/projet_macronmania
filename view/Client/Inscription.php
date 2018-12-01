@@ -1,74 +1,28 @@
-<!DOCTYPE html>
-<html>
+<h1>Inscription</h1>
 
-<head>
-	
-	<title>MacronMania</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	
-</head>
+<form class="formulaire" action="" method="post">
 
+	<input class="field" type="text" name="nom" placeholder="*Nom" /><br/>
 
-<header>
-	
-	
-		
-	<a href="Accueil.html"> <img href="Accueil" class="logo" src="../images/logo.png" alt="logo"></a>
+	<input class="field" type="text" name="prenom" placeholder="*Prenom" /><br/>
 
-	<form action = "verif-recherche.php" method = "get">
-	   <input type = "search" name = "terme">
-	   <input type = "submit" name = "s" value = "Rechercher">
-  	</form>
+	<input class="field" type="text" name="pseudo" placeholder="*Pseudo" /><br/>
 
+	<input class="field" type="password" name="mdp" placeholder="*Mot de passe" /><br/>
 
-	<nav>
-		
-			
-			<div><a href="Contact.html">Contact</a></div>
-			<div><a href="Compte.html">Compte</a></div>
-	</nav>
-    
-    <a href='panier.php'>PANIER</a>
-    
+	<input class="field" type="password" name="mdpVerif" placeholder="*Confirmer mot de passe" /><br/>
 
+	<input class="field" type="text" name="mail" placeholder="*E-mail" /><br/>
 
-</header>
+	<?php 
 
-<body>
+		if (isset($inscrip) == true) {
+			if (!$inscrip)
+				echo "<p>Erreur : Les 2 mots de passes doivent être identiques</p>";
+		}
 
-	<cite>Traversez la rue pour trouver le meilleur jeu de votre vie</cite>
+	?>
 
-	<main>
+	<input class="field" type="submit" value="M'inscrire"/>
 
-
-		<h1>Inscription</h1>
-
-		<form class="formulaire" action="inscription.php" method="post">
-
-			<input class="field" type="text" name="nom" placeholder="*Nom" /><br/>
-
-			<input class="field" type="text" name="prenom" placeholder="*Prenom" /><br/>
-
-			<input class="field" type="text" name="pseudo" placeholder="*Pseudo" /><br/>
-
-			<input class="field" type="password" name="mdp" placeholder="*Mot de passe" /><br/>
-
-			<input class="field" type="password" name="mdpVerif" placeholder="*Confirmer mot de passe" /><br/>
-
-			<input class="field" type="text" name="mail" placeholder="*E-mail" /><br/>
-
-			<input class="field" type="submit" value="M'inscrire"/>
-
-		</form>
-
-	
-
-
-	</main>
-
-</body>
-
-
-
-</html>
+</form>

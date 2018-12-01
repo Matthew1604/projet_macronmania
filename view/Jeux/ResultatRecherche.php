@@ -15,7 +15,7 @@
 <?php
 
 	if ($resRecherche == false)
-		echo '<h2>Pas de resultats</h2>
+		echo '<h2 class="noResult">Pas de resultats</h2>
 			  <img id="no-se" src="images/no-se.jpg" />';
 	else {
 		echo '<div class = "resJeux">';

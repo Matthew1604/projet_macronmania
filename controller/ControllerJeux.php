@@ -9,8 +9,8 @@
 	    public static function Accueil() {
 	        $allJeux = ModelJeux::getAllNomJeux();  //appel au modèle pour gerer la BD
 	        $pagetitle = 'MacronMania | Accueil';
-	        $view = 'Accueil';
 	        $controller = 'Jeux';
+	        $view = 'Accueil';
 	        require (file::build_path(array('view', 'view.php')));  //"redirige" vers la vue
 	    }
 
@@ -19,8 +19,8 @@
 	    public static function recherche() {
 	    	$resRecherche = ModelJeux::search();
 	    	$pagetitle = 'MacronMania | Recherche';
-	        $view = 'ResultatRecherche';
 	        $controller = 'Jeux';
+	        $view = 'ResultatRecherche';
 	    	require_once(file::build_path(array('view', 'view.php')));
 	    }
 	}
