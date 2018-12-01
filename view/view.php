@@ -1,3 +1,5 @@
+<?php if(!isset($_SESSION['id'])) session_start(); ?>
+
 <!DOCTYPE html>
 	<html>
 		<head>
@@ -28,7 +30,13 @@
 
 			<nav>
 				<div><a href="?action=Contact">Contact</a></div>
-				<div><a href="?action=Compte">Compte</a></div>
+				<div><a href="?action=Compte"><?php if(isset($_SESSION['id']) && isset($_SESSION['pseudo'])) echo "Mon compte"; else echo "Connexion"; ?></a></div>
+				<?php 
+
+					if(isset($_SESSION['id']) && isset($_SESSION['pseudo']))
+						echo '<div><a href="?action=Deconnexion">Deconnexion</a></div>';
+
+				?>
 			</nav>
 		    
 		    <a href='?action=panier'>PANIER</a>

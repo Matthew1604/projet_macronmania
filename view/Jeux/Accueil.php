@@ -15,7 +15,7 @@
 </div>
 
 <?php
-
+  
 	foreach ($allJeux as $v) {
 		echo "<p>" . $v['nomJeu'] . " | " . $v['plateforme'] . "</p>";
 	}

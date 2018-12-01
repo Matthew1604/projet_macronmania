@@ -25,6 +25,10 @@
 			}
 		}
 
+		public function getId() {
+			return $this->idClient;
+		}
+
 		public function getPseudo() {
 			return $this->pseudoClient;
 		}
@@ -48,8 +52,8 @@
 		/************************************************************************************/
 		/************************************************************************************/
 
-		public static function mdpByPseudo($pseudo) {
-			$sql = "SELECT mdpClient FROM Clients WHERE pseudoClient = :pseudo";
+		public static function connect($pseudo) {
+			$sql = "SELECT * FROM Clients WHERE pseudoClient = :pseudo";
 		    $rep = Model::$pdo -> prepare($sql);
 
 		    $values = array('pseudo' => $pseudo);

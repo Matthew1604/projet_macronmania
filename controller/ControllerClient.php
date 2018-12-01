@@ -74,14 +74,20 @@
 	    	    require(File::build_path(array('view', 'view.php')));
 	    	}
 	    	else {
-	    		$mdp = ModelClient::mdpByPseudo($_POST['pseudo']);
-	    		if ($mdp == false) {
+	    		$user = ModelClient::connect($_POST['pseudo']);
+	    		if ($user == false) {
 	    			$connect = false;
 	    		} else {
-	    			$mdp = $mdp[0] -> getMdp();
-	    			if ($mdp == hash('sha256', $_POST['mdp'])) {
+	    			$user = $user[0];
+	    			if ($user->getMdp() == hash('sha256', $_POST['mdp'])) {
 	    				/**** TODO TD7 SESSIONS ****/
 	    				
+	    				session_start();
+	    				$_SESSION['id'] = $user->getId();
+	    				$_SESSION['pseudo'] = $user->getPseudo();
+
+	    				require_once(File::build_path(array('model', 'ModelJeux.php')));
+	    				$allJeux = ModelJeux::getAllNomJeux();
 	    				$pagetitle = 'MacronMania | Accueil';
 				        $controller = 'Jeux';
 				        $view = 'Accueil';
@@ -98,6 +104,19 @@
 					require (File::build_path(array('view', "view.php")));
 				}
 	    	}
+	    }
+
+	    public static function Deconnexion() {
+	    	session_start(); 
+	    	session_unset();
+			session_destroy();
+
+	    	require_once(File::build_path(array('model', 'ModelJeux.php')));
+	    	$allJeux = ModelJeux::getAllNomJeux();
+	    	$pagetitle = 'MacronMania | Accueil';
+			$controller = 'Jeux';
+			$view = 'Accueil';
+			require (file::build_path(array('view', 'view.php')));
 	    }
 
 	}
