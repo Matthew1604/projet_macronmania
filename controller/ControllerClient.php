@@ -85,6 +85,10 @@
 	    				session_start();
 	    				$_SESSION['id'] = $user->getId();
 	    				$_SESSION['pseudo'] = $user->getPseudo();
+	    				$_SESSION['nom'] = $user->getNom();
+	    				$_SESSION['prenom'] = $user->getPrenom();
+	    				$_SESSION['mail'] = $user->getMail();
+	    				$_SESSION['mdp'] = $user->getMdp();
 
 	    				require_once(File::build_path(array('model', 'ModelJeux.php')));
 	    				$allJeux = ModelJeux::getAllNomJeux();

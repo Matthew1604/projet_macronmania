@@ -23,14 +23,14 @@
 				<div class="formSearch">
 					<input type="hidden" name="action" value="recherche" />
 					<input type = "text" class="searchBar" placeholder="Recherche..." autocomplete="off" name = "termes" />
-					<button type="submit"></button>
+					<button class="search" type="submit"></button>
 				</div>
 		  	</form>
 
 
 			<nav>
 				<div><a href="?action=Contact">Contact</a></div>
-				<div><a href="?action=Compte"><?php if(isset($_SESSION['id']) && isset($_SESSION['pseudo'])) echo "Mon compte"; else echo "Connexion"; ?></a></div>
+				<div><?php if(isset($_SESSION['id'])) echo '<a href="?action=Compte">Mon compte</a>'; else echo '<a href="?action=Connexion">Se connecter</a>'; ?></div>
 				<?php 
 
 					if(isset($_SESSION['id']) && isset($_SESSION['pseudo']))

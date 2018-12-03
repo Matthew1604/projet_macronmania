@@ -5,6 +5,7 @@ html {
  	padding:0;
  	line-height: 1em;
  	font-family: Arial;
+ 	font-size: 14pt;
 }
 
 header{
@@ -79,7 +80,7 @@ body{
 	box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-button {
+.search {
 	position: absolute;
 	display: block;
 	top: 28px;
@@ -89,6 +90,7 @@ button {
 	height: 22px;
 	background-image: url(../images/search.png);
 	border: 0;
+	cursor: pointer;
 }
 
 main {
@@ -99,6 +101,7 @@ main {
 	display:flex;
 	flex-direction: column;
 	box-shadow: 5px 10px 25px 20px black;
+	border-radius: 5px;
 }
 
 main > h1 {
@@ -117,9 +120,9 @@ main > h1 {
 	margin: auto;
 }
 
-p {
+h2, h3, p {
 	margin-left: 8px;
-	margin-bottom: 30px;
+	margin-right: 8px;
 }
 
 header > a, header > nav > div > a {
@@ -188,6 +191,36 @@ footer {
 .bouton {
 	width : 15%;
 	height: 50px;
+}
+
+.info {
+	display: flex;
+	margin: 20px auto;
+	width: 90%;
+	border: 1px solid;
+	border-radius: 7px;
+}
+
+.info > .listeInfo {
+	margin: 16px 0px 10px 260px;
+	line-height: 3em;
+	list-style: none;
+}
+
+.info > .listeButton {
+	line-height: 3em;
+	list-style: none;
+}
+
+.modifyButton {
+	margin-bottom: 5px;
+	font-size: 14pt;
+	cursor: pointer;
+}
+
+.modifyButtonDisabled {
+	margin-bottom: 5px;
+	font-size: 14pt;
 }
 
 /*******images******/

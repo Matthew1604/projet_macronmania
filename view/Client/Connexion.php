@@ -8,10 +8,11 @@
 
 		if (isset($connect) == true) {
 			if (!$connect)
-				echo '<p>Login ou mot de passe incorrect. Veuillez réessayer ou <a href="?action=Inscription">inscrivez-vous ici</a>.</p>';
+				echo '<p>Login ou mot de passe incorrect. Veuillez réessayer.</p>';
 		}
 
 	?>
 	<input class="field" type="submit" value="Se connecter">
+	<p>Pas de compte ? <a href="?action=Inscription">S'inscrire immédiatement !</a></p>
 
 </form>

@@ -1,20 +1,20 @@
 <h1>Mon compte</h1>
 
-<section class="connexion">
-	
-	<form action = "" method = "get">
-		<input type="hidden" name="action" value="Connexion">
-		<input class="field" type = "submit" value = "Se connecter">
-	</form>
-	
-</section>
+<h2>Mes informations</h2>
 
-
-<section class="inscription">
-	
-	<form action = "" method = "get">
-		<input type="hidden" name="action" value="Inscription">
-		<input class="field" type = "submit" value = "Créer un compte">
-	</form>
-
-</section>
+<div class="info">
+	<ul class="listeInfo">
+		<li>Nom : <?php echo $_SESSION['nom'] ?></li>
+		<li>Prenom : <?php echo $_SESSION['prenom'] ?></li>
+		<li>Pseudo : <?php echo $_SESSION['pseudo'] ?></li>
+		<li>Adresse e-mail : <?php echo $_SESSION['mail'] ?></li>
+		<li>Mot de passe : ********</li>
+	</ul>
+	<ul class="listeButton">
+		<li><button class="modifyButton" type="button" >Modifier</button></li>
+		<li><button class="modifyButton" type="button" >Modifier</button></li>
+		<li><button class="modifyButtonDisabled" type="button" disabled>Modifier</button></li>
+		<li><button class="modifyButton" type="button" >Modifier</button></li>
+		<li><button class="modifyButton" type="button" >Modifier</button></li>
+	</ul>
+</div>
