@@ -1,14 +1,20 @@
 <h1>Résultats de recherche</h1>
 
-<div class="select-genre">
-  <select>
-    <option value="0">Genre</option>
-    <option value="1">Audi</option>
-    <option value="2">BMW</option>
-    <option value="3">Citroen</option>
-    <option value="4">Ford</option>
-    <option value="5">Honda</option>
-    <option value="6">Jaguar</option>
+<div class="select">
+  <select id="genre" name="genre">
+    <option value="0">--Genre--</option>
+    <option value="Action / Aventure">Action / Aventure</option>
+    <option value="Course">Course</option>
+    <option value="FPS">FPS</option>
+    <option value="Sport">Sport</option>
+    <option value="Gestion">Gestion</option>
+    <option value="Activités récréatives">Activités récréatives</option>
+  </select>
+
+  <select id="ordre" name="ordre">
+    <option value="1">Alphabétique</option>
+    <option value="2">Prix</option>
+    <option value="3">Notes</option>
   </select>
 </div>
 

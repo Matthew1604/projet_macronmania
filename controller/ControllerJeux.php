@@ -7,7 +7,7 @@
 		/************************************************************************************/
 
 	    public static function Accueil() {
-	        $allJeux = ModelJeux::getAllNomJeux();  //appel au modèle pour gerer la BD
+	       	$allJeux = ModelJeux::getAllNomJeux();  //appel au modèle pour gerer la BD
 	        $pagetitle = 'MacronMania | Accueil';
 	        $controller = 'Jeux';
 	        $view = 'Accueil';

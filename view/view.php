@@ -48,14 +48,14 @@
 			<cite><h3>Traversez la rue pour trouver le meilleur jeu de votre vie</h3></cite>
 
 			<main>
-
+				<div class="main">
 			<?php
 				// Si $controleur='Jeux' et $view='Accueil',
 				// alors $filepath="/chemin_du_site/view/Jeux/Accueil.php"
 				$filepath = File::build_path(array("view", $controller, "$view.php"));
 				require $filepath;
 			?>
-
+				</div>
 			</main>
 		</body>
 

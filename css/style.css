@@ -3,13 +3,13 @@ html {
 	height:100%;
 	margin:0;
  	padding:0;
- 	line-height: 1em;
+ 	line-height: 1.3em;
  	font-family: Arial;
  	font-size: 14pt;
 }
 
 header{
-	background-color: #55ae1e; 
+	background-color: #139500; 
 	display:flex;
 	align-items: center;
 	justify-content: space-around;
@@ -59,7 +59,21 @@ body{
 	position:relative;
 	display: flex;
 	flex-direction: column;
-	
+}
+
+.main {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+a {
+	color: blue;
+	text-decoration: none;
+}
+
+a:visited {
+	color: blue;
+	text-decoration: none;
 }
 
 .formSearch {
@@ -104,8 +118,9 @@ main {
 	border-radius: 5px;
 }
 
-main > h1 {
+main > div > h1 {
 	text-align: center;
+	margin-bottom: 50px;
 }
 
 .welcome {
@@ -116,14 +131,20 @@ main > h1 {
 	text-align: center;
 }
 
-.select-genre {
-	margin: auto;
+.select {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
 }
 
-h2, h3, p {
-	margin-left: 8px;
-	margin-right: 8px;
+#genre {
+	width: 180px;
 }
+
+#ordre {
+	width: 180px;
+}
+
 
 header > a, header > nav > div > a {
 	text-decoration: none;

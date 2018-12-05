@@ -4,15 +4,15 @@
 <form class = "formulaire" method ="post" action = "">
 
 	<div>
-		<input class = "field" type = "text" name = "nom" placeholder = "*Nom" required>
+		<input class = "field" type = "text" name = "nom" placeholder = "*Nom" <?php if(isset($_SESSION['id'])) echo ' value = "' . $_SESSION['nom'] . '"'; ?> required>
 	</div>
 
 	<div>
-		<input class = "field" type = "text" name = "prenom" placeholder = "*Prénom" required>
+		<input class = "field" type = "text" name = "prenom" placeholder = "*Prénom" <?php if(isset($_SESSION['id'])) echo ' value = "' . $_SESSION['prenom'] . '"'; ?> required>
 	</div>
 
 	<div>
-		<input class = "field" type = "text" name = "mail" placeholder = "*Adresse Mail" required>
+		<input class = "field" type = "text" name = "mail" placeholder = "*Adresse Mail" <?php if(isset($_SESSION['id'])) echo ' value = "' . $_SESSION['mail'] . '"'; ?> required>
 	</div>
 
 	<div>
