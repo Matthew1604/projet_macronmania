@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 04 Décembre 2018 à 10:56
+-- Généré le :  Mer 05 Décembre 2018 à 08:36
 -- Version du serveur :  5.5.47-0+deb8u1
 -- Version de PHP :  7.0.4-1~dotdeb+8.1
 
@@ -40,7 +40,18 @@ CREATE TABLE `Clients` (
 --
 
 INSERT INTO `Clients` (`idClient`, `pseudoClient`, `nomClient`, `prenomClient`, `mailClient`, `mdpClient`) VALUES
+(1, 'admin', 'Administrateur', 'Administrateur', 'vergely.matt@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'),
 (7, 'vergelym', 'Vergely', 'Matthew', 'vergely.matt@gmail.com', 'd89198be61896ae48f33b5452d8caf38df637e805a26dac28dc1d68a1addf9ed');
+
+--
+-- Déclencheurs `Clients`
+--
+DELIMITER $$
+CREATE TRIGGER `trigger_pseudo` BEFORE INSERT ON `Clients` FOR EACH ROW BEGIN
+
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -141,7 +152,7 @@ ALTER TABLE `PasserCommande`
 -- AUTO_INCREMENT pour la table `Clients`
 --
 ALTER TABLE `Clients`
-  MODIFY `idClient` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idClient` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `Commandes`
 --
