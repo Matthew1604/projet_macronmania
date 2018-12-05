@@ -89,6 +89,7 @@
 	    				$_SESSION['prenom'] = $user->getPrenom();
 	    				$_SESSION['mail'] = $user->getMail();
 	    				$_SESSION['mdp'] = $user->getMdp();
+	    				$connect = true;
 
 	    				require_once(File::build_path(array('model', 'ModelJeux.php')));
 	    				$allJeux = ModelJeux::getAllNomJeux();

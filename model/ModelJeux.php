@@ -15,17 +15,16 @@
 		/************************************************************************************/
 		/************************************************************************************/
 
-		public function __construct($id = NULL, $nom = NULL, $plateforme = NULL, 
+		public function __construct($nom = NULL, $plateforme = NULL, 
 									$genre = NULL, $img = NULL, $note = NULL, $prix = NULL) {
-			if (!is_null($id) && !is_null($nom) && !is_null($plateforme) && 
-				!is_null($genre) && !is_null($img) && !is_null($note) && !is_null($prix)) {
-				$this->idJeu = $id;
-				$this->nomJeu = $nom;
-				$this->plateforme = $plateforme;
-				$this->genre = $genre;
-				$this->image = $img;
-				$this->noteSur5 = $note;
-				$this->prix = $prix;
+			if (!is_null($nom) && !is_null($plateforme) && !is_null($genre) 
+				&& !is_null($img) && !is_null($note) && !is_null($prix)) {
+					$this->nomJeu = $nom;
+					$this->plateforme = $plateforme;
+					$this->genre = $genre;
+					$this->image = $img;
+					$this->note = $note;
+					$this->prix = $prix;
 			}
 		}
 
@@ -37,8 +36,20 @@
 			return $this->plateforme;
 		}
 
+		public function getGenre() {
+			return $this->genre;
+		}
+
 		public function getImage() {
 			return $this->image;
+		}
+
+		public function getNote() {
+			return $this->noteSur5;
+		}
+
+		public function getPrix() {
+			return $this->prix;
 		}
 
 
@@ -46,11 +57,25 @@
 		/************************************************************************************/
 
 		public static function getAllNomJeux() {
-			$res = Model::$pdo->prepare("SELECT nomJeu, plateforme FROM Jeux");
+			$res = Model::$pdo->prepare("SELECT idJeu, nomJeu, plateforme FROM Jeux");
 			$res->execute();
 			if (empty($res))
 				return false;
 			return $res;
+		}
+
+		/************************************************************************************/
+
+		public static function getJeuById($id) {
+			$sql = "SELECT * FROM Jeux WHERE idJeu = :id";
+			$res = Model::$pdo->prepare($sql);
+			$values = array('id' => $id);
+			$res->execute($values);
+			$res->setFetchMode(PDO::FETCH_CLASS, 'ModelJeux');
+			$res = $res->fetchAll();
+			if(empty($res))
+				return false;
+			return $res[0];
 		}
 
 		/************************************************************************************/	
@@ -72,6 +97,40 @@
 				 if (empty($res))
 				 	return false;
 				 return $res;
+			}
+		}
+
+		/************************************************************************************/
+
+		public function save() {
+			try {
+				$sql = 'INSERT INTO Jeux (idJeu, nomJeu, plateforme, genre, image, noteSur5, prix) VALUES (NULL, :nom, :plateforme, :genre, :image, :note, :prix)';
+				$res = Model::$pdo->prepare($sql);
+				$values = array('nom' => $this->getNomJeu(), 
+								'plateforme' => $this->getPlateforme(),
+								'genre' => $this->getGenre(),
+								'image' => $this->getImage(),
+								'note' => $this->getNote(),
+								'prix' => $this->getPrix());
+				$res->execute($values);
+				return true;
+			}
+			catch (PDOException $e) {
+				return false;
+			}
+		}
+
+		/************************************************************************************/
+
+		public static function deleteById($id) {
+			try {
+				$sql = "DELETE FROM Jeux WHERE idJeu = :id";
+				$res = Model::$pdo->prepare($sql);
+				$values = array('id' => $id);
+				$res->execute($values);
+				return true;
+			} catch(PDOException $e) {
+				return false;
 			}
 		}
 	}

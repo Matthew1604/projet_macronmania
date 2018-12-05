@@ -22,7 +22,7 @@
 
 	if ($resRecherche == false)
 		echo '<h2 class="noResult">Pas de resultats</h2>
-			  <img id="no-se" src="images/no-se.jpg" />';
+			  <div style="text-align: center"><img id="no-se" src="images/no-se.jpg" /></div>';
 	else {
 		echo '<div class = "resJeux">';
 		foreach ($resRecherche as $v) {

@@ -29,11 +29,18 @@
 
 
 			<nav>
-				<div><a href="?action=Contact">Contact</a></div>
+				<?php
+
+					if(isset($_SESSION['id']) && $_SESSION['id'] == 1) {
+						echo '<div><a href="?action=create">Ajouter un jeu</a></div>';
+					}
+					else echo '<div><a href="?action=Contact">Contact</a></div>';
+
+				?>
 				<div><?php if(isset($_SESSION['id'])) echo '<a href="?action=Compte">Mon compte</a>'; else echo '<a href="?action=Connexion">Se connecter</a>'; ?></div>
 				<?php 
 
-					if(isset($_SESSION['id']) && isset($_SESSION['pseudo']))
+					if(isset($_SESSION['id']))
 						echo '<div><a href="?action=Deconnexion">Deconnexion</a></div>';
 
 				?>

@@ -1,6 +1,7 @@
 <h1>MacronMania | Accueil</h1>
 <h2 class="welcome">Bienvenue sur votre site de vente de jeux en ligne MacronMania !</h2>
 <h3 class="welcome">Parce que c'est notre projet !</h3>
+<h4>Tous les jeux :</h4>
 
 <div class="select">
   <select id="genre" name="genre">
@@ -24,10 +25,10 @@
   
 	foreach ($allJeux as $v) {
 
-		echo "<p>" . $v['nomJeu'] . " | " . $v['plateforme'];
+		echo '<p><a href="?action=read&id=' . $v['idJeu'] . '">' . $v['nomJeu'] . "</a> | " . $v['plateforme'];
 
     if (isset($_SESSION['id']) && $_SESSION['id'] == 1)
-      echo '<a href="?action=Update"> [Modifier] </a><a href="?action=Delete"> [Supprimer] </a></p>';
+      echo ' [<a href="?action=update"> Modifier </a>] [<a href="?action=delete&id=' . $v['idJeu'] . '"> Supprimer </a>]</p>';
     else
       echo "</p>";
 
