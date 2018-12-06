@@ -4,7 +4,7 @@
 <h4>Tous les jeux :</h4>
 
 <div class="select">
-  <select id="genre" name="genre">
+  <select id="genre" name="genre" onchange="window.location.href='?action=genre'">
     <option value="0">--Genre--</option>
     <option value="Action / Aventure">Action / Aventure</option>
     <option value="Course">Course</option>
