@@ -2,13 +2,14 @@
 
 	require_once(File::build_path(array('model', 'Model.php')));
 
-	class ModelClient {
+	class ModelClient extends Model {
 		private $idClient;
 		private $pseudoClient;
 		private $nomClient;
 		private $prenomClient;
 		private $mailClient;
 		private $mdpClient;
+		protected static $object = 'Client';
 
 		/************************************************************************************/
 		/************************************************************************************/

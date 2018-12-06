@@ -25,10 +25,10 @@
   
 	foreach ($allJeux as $v) {
 
-		echo '<p><a href="?action=read&id=' . $v['idJeu'] . '">' . $v['nomJeu'] . "</a> | " . $v['plateforme'];
+		echo '<p><a class="nomJeux" href="?action=read&id=' . $v->getId() . '">' . $v->getNomJeu() . "</a> | " . $v->getPlateforme();
 
     if (isset($_SESSION['id']) && $_SESSION['id'] == 1)
-      echo ' [<a href="?action=update"> Modifier </a>] [<a href="?action=delete&id=' . $v['idJeu'] . '"> Supprimer </a>]</p>';
+      echo ' [<a href="?action=update&id=' . $v->getId() . '"> Modifier </a>] [<a href="?action=delete&id=' . $v->getId() . '"> Supprimer </a>]</p>';
     else
       echo "</p>";
 

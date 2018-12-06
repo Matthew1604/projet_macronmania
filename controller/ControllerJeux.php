@@ -7,7 +7,7 @@
 		/************************************************************************************/
 
 	    public static function Accueil() {
-	       	$allJeux = ModelJeux::getAllNomJeux();  //appel au modèle pour gerer la BD
+	       	$allJeux = ModelJeux::selectAll();  //appel au modèle pour gerer la BD
 
 	        $pagetitle = 'MacronMania | Accueil';
 	        $controller = 'Jeux';
@@ -36,6 +36,7 @@
 	    	$image = $Jeu->getImage();
 	    	$prix = $Jeu->getPrix();
 	    	$note = $Jeu->getNote();
+
 	    	$pagetitle = 'MacronMania | Description';
 	    	$controller = 'Jeux';
 	    	$view = 'Read';
@@ -71,13 +72,42 @@
 	    /************************************************************************************/
 
 	    public static function update() {
-
+	    	$Jeu = ModelJeux::getJeuById($_GET['id']);
+	    	$nomJeu = $Jeu->getNomJeu();
+	    	$plateforme = $Jeu->getPlateforme();
+	    	$genre = $Jeu->getGenre();
+	    	$image = $Jeu->getImage();
+	    	$prix = $Jeu->getPrix();
+	    	$note = $Jeu->getNote();
 
 	    	$pagetitle = 'MacronMania | Modifier';
 	        $controller = 'Jeux';
 	        $view = 'Update';
 	    	require_once(file::build_path(array('view', 'view.php')));
 	    }
+
+		/************************************************************************************/
+
+		public static function updated() {
+			$maj = ModelJeux::update(array('id' => $_GET['id'],
+										   'nom' => $_GET['nom'],
+										   'plateforme' => $_GET['plateforme'],
+										   'genre' => $_GET['genre'],
+										   'image' => $_GET['image'],
+										   'note' => $_GET['note'],
+										   'prix' => $_GET['prix']));
+
+			if ($maj) {
+				$msg = "Le jeu à bien été modifié.";
+			} else {
+				$msg = "Erreur, les modifications n'ont pas été prise en compte";
+			}
+
+			$pagetitle = 'MacronMania | Modifié';
+	        $controller = 'Jeux';
+	        $view = 'Updated';
+	    	require_once(file::build_path(array('view', 'view.php')));
+		}	    
 
 	    /************************************************************************************/
 

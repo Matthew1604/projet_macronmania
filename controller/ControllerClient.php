@@ -92,7 +92,7 @@
 	    				$connect = true;
 
 	    				require_once(File::build_path(array('model', 'ModelJeux.php')));
-	    				$allJeux = ModelJeux::getAllNomJeux();
+	    				$allJeux = ModelJeux::selectAll();
 	    				$pagetitle = 'MacronMania | Accueil';
 				        $controller = 'Jeux';
 				        $view = 'Accueil';
@@ -117,7 +117,7 @@
 			session_destroy();
 
 	    	require_once(File::build_path(array('model', 'ModelJeux.php')));
-	    	$allJeux = ModelJeux::getAllNomJeux();
+	    	$allJeux = ModelJeux::selectAll();
 	    	$pagetitle = 'MacronMania | Accueil';
 			$controller = 'Jeux';
 			$view = 'Accueil';

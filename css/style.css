@@ -76,6 +76,14 @@ a:visited {
 	text-decoration: none;
 }
 
+.nomJeux {
+	color: #146eea;
+}
+
+.nomJeux:visited {
+	color: #146eea;
+}
+
 .formSearch {
 	position: relative;
 	height: 100%;

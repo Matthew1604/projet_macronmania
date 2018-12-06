@@ -34,14 +34,14 @@
 					if(isset($_SESSION['id']) && $_SESSION['id'] == 1) {
 						echo '<div><a href="?action=create">Ajouter un jeu</a></div>';
 					}
-					else echo '<div><a href="?action=Contact">Contact</a></div>';
+					else echo '<div><a href="?controller=Client&action=Contact">Contact</a></div>';
 
 				?>
-				<div><?php if(isset($_SESSION['id'])) echo '<a href="?action=Compte">Mon compte</a>'; else echo '<a href="?action=Connexion">Se connecter</a>'; ?></div>
+				<div><?php if(isset($_SESSION['id'])) echo '<a href="?controller=Client&action=Compte">Mon compte</a>'; else echo '<a href="?controller=Client&action=Connexion">Se connecter</a>'; ?></div>
 				<?php 
 
 					if(isset($_SESSION['id']))
-						echo '<div><a href="?action=Deconnexion">Deconnexion</a></div>';
+						echo '<div><a href="?controller=Client&action=Deconnexion">Deconnexion</a></div>';
 
 				?>
 			</nav>

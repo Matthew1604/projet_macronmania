@@ -34,7 +34,23 @@ require_once(File::build_path(array('config', 'Conf.php')));
 			}
 
 		}
+
+		/************************************************************************************/
+		/************************************************************************************/
+
+		public static function selectAll() {
+			$tableName = static::$object;
+			$className = 'Model'.ucfirst($tableName);
+			$res = Model::$pdo->prepare("SELECT idJeu, nomJeu, plateforme FROM $tableName");
+			$res->execute();
+			$res->setFetchMode(PDO::FETCH_CLASS, $className);
+			$res = $res->fetchAll();
+			if (empty($res))
+				return false;
+			return $res;
+		}
 	}
+
 	Model::Init();
 
 ?>

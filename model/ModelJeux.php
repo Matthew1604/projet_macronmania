@@ -2,7 +2,7 @@
 
 	require_once(File::build_path(array('model', 'Model.php')));
 
-	class ModelJeux {
+	class ModelJeux extends Model {
 		private $idJeu;
 		private $nomJeu;
 		private $plateforme;
@@ -10,6 +10,7 @@
 		private $image;
 		private $noteSur5;
 		private $prix;
+		protected static $object = 'Jeux';
 
 		/************************************************************************************/
 		/************************************************************************************/
@@ -23,9 +24,13 @@
 					$this->plateforme = $plateforme;
 					$this->genre = $genre;
 					$this->image = $img;
-					$this->note = $note;
+					$this->noteSur5 = $note;
 					$this->prix = $prix;
 			}
+		}
+
+		public function getId() {
+			return $this->idJeu;
 		}
 
 		public function getNomJeu() {
@@ -54,16 +59,6 @@
 
 
 		/************************************************************************************/
-		/************************************************************************************/
-
-		public static function getAllNomJeux() {
-			$res = Model::$pdo->prepare("SELECT idJeu, nomJeu, plateforme FROM Jeux");
-			$res->execute();
-			if (empty($res))
-				return false;
-			return $res;
-		}
-
 		/************************************************************************************/
 
 		public static function getJeuById($id) {
@@ -116,6 +111,28 @@
 				return true;
 			}
 			catch (PDOException $e) {
+				return false;
+			}
+		}
+
+		/************************************************************************************/
+
+		public static function update($data) {
+			try {
+				$sql = "UPDATE Jeux SET nomJeu = :nom, plateforme = :plateforme, genre = :genre,
+										image = :image, noteSur5 = :note, prix = :prix
+									WHERE idJeu = :id";
+				$res = Model::$pdo->prepare($sql);
+				$values = array('id' => $data['id'],
+								'nom' => $data['nom'],
+								'plateforme' => $data['plateforme'],
+								'genre' => $data['genre'],
+								'image' => $data['image'],
+								'note' => $data['note'],
+								'prix' => $data['prix']);
+				$res->execute($values);
+				return true;
+			} catch (PDOException $e) {
 				return false;
 			}
 		}
