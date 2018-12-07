@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 05 Décembre 2018 à 08:36
+-- Généré le :  Ven 07 Décembre 2018 à 13:26
 -- Version du serveur :  5.5.47-0+deb8u1
 -- Version de PHP :  7.0.4-1~dotdeb+8.1
 
@@ -40,14 +40,28 @@ CREATE TABLE `Clients` (
 --
 
 INSERT INTO `Clients` (`idClient`, `pseudoClient`, `nomClient`, `prenomClient`, `mailClient`, `mdpClient`) VALUES
-(1, 'admin', 'Administrateur', 'Administrateur', 'vergely.matt@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'),
-(7, 'vergelym', 'Vergely', 'Matthew', 'vergely.matt@gmail.com', 'd89198be61896ae48f33b5452d8caf38df637e805a26dac28dc1d68a1addf9ed');
+(1, 'admin', 'Administrateur', 'Administrateur', '', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'),
+(7, 'vergelym', 'Vergely', 'Matthew', 'vergely.matt@gmail.com', 'd89198be61896ae48f33b5452d8caf38df637e805a26dac28dc1d68a1addf9ed'),
+(9, 'biloutBG34000', 'Girot', 'Nathan', 'znathangirotz@gmail.com', '3d336508c9b10a6012228b11f8af96c87b1e3cb758b4360bd64bb1a72385da18');
 
 --
 -- Déclencheurs `Clients`
 --
 DELIMITER $$
 CREATE TRIGGER `trigger_pseudo` BEFORE INSERT ON `Clients` FOR EACH ROW BEGIN
+
+DECLARE v_pseudo INTEGER;
+DECLARE v_mail INTEGER;
+
+SELECT COUNT(*) INTO v_pseudo FROM Clients WHERE pseudoClient = NEW.pseudoClient;
+IF (v_pseudo != 0) THEN
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'pseudo déjà utilisé';
+END IF;
+
+SELECT COUNT(*) INTO v_mail FROM Clients WHERE mailClient = NEW.mailClient;
+IF (v_mail != 0) THEN
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'adresse mail déjà utilisé';
+END IF;
 
 END
 $$
@@ -152,7 +166,7 @@ ALTER TABLE `PasserCommande`
 -- AUTO_INCREMENT pour la table `Clients`
 --
 ALTER TABLE `Clients`
-  MODIFY `idClient` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idClient` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `Commandes`
 --
@@ -162,7 +176,7 @@ ALTER TABLE `Commandes`
 -- AUTO_INCREMENT pour la table `Jeux`
 --
 ALTER TABLE `Jeux`
-  MODIFY `idJeu` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idJeu` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- Contraintes pour les tables exportées
 --
