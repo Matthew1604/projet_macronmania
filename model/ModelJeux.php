@@ -11,6 +11,7 @@
 		private $noteSur5;
 		private $prix;
 		protected static $object = 'Jeux';
+		protected static $primary = 'idJeu';
 
 		/************************************************************************************/
 		/************************************************************************************/
@@ -58,21 +59,7 @@
 		}
 
 
-		/************************************************************************************/
-		/************************************************************************************/
-
-		public static function getJeuById($id) {
-			$sql = "SELECT * FROM Jeux WHERE idJeu = :id";
-			$res = Model::$pdo->prepare($sql);
-			$values = array('id' => $id);
-			$res->execute($values);
-			$res->setFetchMode(PDO::FETCH_CLASS, 'ModelJeux');
-			$res = $res->fetchAll();
-			if(empty($res))
-				return false;
-			return $res[0];
-		}
-
+		/************************************************************************************/	
 		/************************************************************************************/	
 
 		public static function search() {

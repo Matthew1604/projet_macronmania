@@ -1,4 +1,3 @@
-
 <?php
 
 require_once(File::build_path(array('config', 'Conf.php')));
@@ -41,7 +40,8 @@ require_once(File::build_path(array('config', 'Conf.php')));
 		public static function selectAll() {
 			$tableName = static::$object;
 			$className = 'Model'.ucfirst($tableName);
-			$res = Model::$pdo->prepare("SELECT idJeu, nomJeu, plateforme FROM $tableName");
+
+			$res = Model::$pdo->prepare("SELECT * FROM $tableName");
 			$res->execute();
 			$res->setFetchMode(PDO::FETCH_CLASS, $className);
 			$res = $res->fetchAll();
@@ -49,6 +49,25 @@ require_once(File::build_path(array('config', 'Conf.php')));
 				return false;
 			return $res;
 		}
+
+		/************************************************************************************/
+
+		public static function select($primaryValue) {
+			$tableName = static::$object;
+			$className = 'Model'.ucfirst($tableName);
+			$primaryKey = static::$primary;
+
+			$sql = "SELECT * FROM $tableName WHERE $primaryKey = :primaryValue";
+			$res = Model::$pdo->prepare($sql);
+			$values = array('primaryValue' => $primaryValue);
+			$res->execute($values);
+			$res->setFetchMode(PDO::FETCH_CLASS, $className);
+			$res = $res->fetchAll();
+			if(empty($res))
+				return false;
+			return $res[0];
+		}
+
 	}
 
 	Model::Init();

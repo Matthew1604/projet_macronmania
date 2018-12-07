@@ -6,16 +6,16 @@
           static private $databases = array(
             // Le nom d'hote est webinfo a l'IUT
             // ou localhost sur votre machine
-            'hostname' => 'localhost',
+            'hostname' => 'webinfo',
             // A l'IUT, vous avez une BDD nommee comme votre login
             // Sur votre machine, vous devrez creer une BDD
-            'database' => 'projet_PHP',
+            'database' => 'vergelym',
             // A l'IUT, c'est votre login
             // Sur votre machine, vous avez surement un compte 'root'
-            'login' => 'root',
+            'login' => 'vergelym',
             // A l'IUT, c'est votre mdp (INE par defaut)
             // Sur votre machine personelle, vous avez creez ce mdp a l'installation
-            'password' => ''
+            'password' => '123'
           );
            
           static public function getLogin() {

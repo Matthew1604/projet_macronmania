@@ -3,6 +3,7 @@
 	require_once (File::build_path(array('model', 'ModelClient.php'))); // chargement du modèle
 
 	class ControllerClient {
+		protected static $object = 'Client';
 
 		/************************************************************************************/
 

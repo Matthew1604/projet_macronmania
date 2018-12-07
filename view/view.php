@@ -57,8 +57,7 @@
 			<main>
 				<div class="main">
 			<?php
-				// Si $controleur='Jeux' et $view='Accueil',
-				// alors $filepath="/chemin_du_site/view/Jeux/Accueil.php"
+				$controller = static::$object;
 				$filepath = File::build_path(array("view", $controller, "$view.php"));
 				require $filepath;
 			?>

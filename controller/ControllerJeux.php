@@ -3,6 +3,7 @@
 	require_once (File::build_path(array('model', 'ModelJeux.php'))); // chargement du modèle
 
 	class ControllerJeux {
+		protected static $object = 'Jeux';
 
 		/************************************************************************************/
 
@@ -29,7 +30,7 @@
 	    /************************************************************************************/
 
 	    public static function read() {
-	    	$Jeu = ModelJeux::getJeuById($_GET['id']);
+	    	$Jeu = ModelJeux::select($_GET['id']);
 	    	$nomJeu = $Jeu->getNomJeu();
 	    	$plateforme = $Jeu->getPlateforme();
 	    	$genre = $Jeu->getGenre();

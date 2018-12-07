@@ -10,6 +10,7 @@
 		private $mailClient;
 		private $mdpClient;
 		protected static $object = 'Client';
+		protected static $primary = 'idClient';
 
 		/************************************************************************************/
 		/************************************************************************************/
