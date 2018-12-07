@@ -47,11 +47,17 @@
 	    /************************************************************************************/
 
 	    public static function create() {
+	    	$nomJeu = '';
+	    	$plateforme = '';
+	    	$genre = '';
+	    	$note = '';
+	    	$prix = '';
+	    	$image = '';
 
-
+	    	$action = 'created';
 	    	$pagetitle = 'MacronMania | Créer';
 	    	$controller = 'Jeux';
-	    	$view = 'Create';
+	    	$view = 'Update';
 	    	require_once(file::build_path(array('view', 'view.php')));
 	    }
 
@@ -59,6 +65,7 @@
 
 	    public static function created() {
 	    	$Jeu = new ModelJeux($_GET['nom'], $_GET['plateforme'], $_GET['genre'], $_GET['image'], $_GET['note'], $_GET['prix']);
+	    	$msg = $Jeu->save();
 	    	if ($Jeu->save()) {
 	    		$msg = "Le jeu a bien été ajouté";
 	    	} else {
@@ -81,6 +88,7 @@
 	    	$prix = $Jeu->getPrix();
 	    	$note = $Jeu->getNote();
 
+	    	$action = 'updated';
 	    	$pagetitle = 'MacronMania | Modifier';
 	        $controller = 'Jeux';
 	        $view = 'Update';
@@ -90,12 +98,12 @@
 		/************************************************************************************/
 
 		public static function updated() {
-			$maj = ModelJeux::update(array('id' => $_GET['id'],
-										   'nom' => $_GET['nom'],
+			$maj = ModelJeux::update(array('idJeu' => $_GET['id'],
+										   'nomJeu' => $_GET['nom'],
 										   'plateforme' => $_GET['plateforme'],
 										   'genre' => $_GET['genre'],
 										   'image' => $_GET['image'],
-										   'note' => $_GET['note'],
+										   'noteSur5' => $_GET['note'],
 										   'prix' => $_GET['prix']));
 
 			if ($maj) {
@@ -113,7 +121,7 @@
 	    /************************************************************************************/
 
 	    public static function delete() {
-	    	if(ModelJeux::deleteById($_GET['id'])) {
+	    	if(ModelJeux::delete($_GET['id'])) {
 	    		$msg = "Le jeu a bien été supprimé";
 	    	} else {
 	    		$msg = "Erreur, le jeu n'a pas été supprimé";

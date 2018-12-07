@@ -68,6 +68,77 @@ require_once(File::build_path(array('config', 'Conf.php')));
 			return $res[0];
 		}
 
+		/************************************************************************************/
+
+		public static function delete($primaryValue) {
+			$tableName = static::$object;
+			$primaryKey = static::$primary;
+
+			try {
+				$sql = "DELETE FROM $tableName WHERE $primaryKey = :id";
+				$res = Model::$pdo->prepare($sql);
+				$values = array('id' => $primaryValue);
+				$res->execute($values);
+				return true;
+			} catch(PDOException $e) {
+				return false;
+			}
+		}
+
+		/************************************************************************************/
+
+		public static function update($data) {
+			$tableName = static::$object;
+			$primaryKey = static::$primary;
+
+			try {
+				
+				$sql = "UPDATE $tableName SET ";
+				foreach ($data as $key => $value) {
+					if ($key != $primaryKey)
+						$sql .= "$key = :$key, ";
+				}
+				$sql = rtrim($sql, ', ');
+				$sql .= " WHERE $primaryKey = :$primaryKey";
+
+				$res = Model::$pdo->prepare($sql);
+				$res->execute($data);
+				return true;
+			} catch (PDOException $e) {
+				return false;
+			}
+		}
+
+		/************************************************************************************/
+
+		public function save() {
+			$tableName = static::$object;
+			$className = 'Model'.ucfirst($tableName);
+			$primaryKey = static::$primary;
+
+			try {
+
+				$tabObject = (array)$this;
+				$sql = "INSERT INTO $tableName VALUES (NULL, ";
+				foreach ($tabObject as $key => $value) {
+					if ($key != $primaryKey)
+						$sql .= "$key = :$key, ";
+				}
+
+				$res = Model::$pdo->prepare($sql);
+				$values = array('nom' => $this->getNomJeu(), 
+								'plateforme' => $this->getPlateforme(),
+								'genre' => $this->getGenre(),
+								'image' => $this->getImage(),
+								'note' => $this->getNote(),
+								'prix' => $this->getPrix());
+				$res->execute($values);
+				return true;
+			}
+			catch (PDOException $e) {
+				return false;
+			}
+		}
 	}
 
 	Model::Init();

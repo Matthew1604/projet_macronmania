@@ -60,7 +60,7 @@
 			<main>
 				<div class="main">
 			<?php
-				$filepath = File::build_path(array("view", static::$object, "$view.php"));
+				$filepath = File::build_path(array("view", $controller, "$view.php"));
 				require $filepath;
 			?>
 				</div>

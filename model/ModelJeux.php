@@ -86,7 +86,7 @@
 
 		public function save() {
 			try {
-				$sql = 'INSERT INTO Jeux (idJeu, nomJeu, plateforme, genre, image, noteSur5, prix) VALUES (NULL, :nom, :plateforme, :genre, :image, :note, :prix)';
+				$sql = 'INSERT INTO Jeux VALUES (NULL, :nom, :plateforme, :genre, :image, :note, :prix)';
 				$res = Model::$pdo->prepare($sql);
 				$values = array('nom' => $this->getNomJeu(), 
 								'plateforme' => $this->getPlateforme(),
@@ -104,39 +104,7 @@
 
 		/************************************************************************************/
 
-		public static function update($data) {
-			try {
-				$sql = "UPDATE Jeux SET nomJeu = :nom, plateforme = :plateforme, genre = :genre,
-										image = :image, noteSur5 = :note, prix = :prix
-									WHERE idJeu = :id";
-				$res = Model::$pdo->prepare($sql);
-				$values = array('id' => $data['id'],
-								'nom' => $data['nom'],
-								'plateforme' => $data['plateforme'],
-								'genre' => $data['genre'],
-								'image' => $data['image'],
-								'note' => $data['note'],
-								'prix' => $data['prix']);
-				$res->execute($values);
-				return true;
-			} catch (PDOException $e) {
-				return false;
-			}
-		}
 
-		/************************************************************************************/
-
-		public static function deleteById($id) {
-			try {
-				$sql = "DELETE FROM Jeux WHERE idJeu = :id";
-				$res = Model::$pdo->prepare($sql);
-				$values = array('id' => $id);
-				$res->execute($values);
-				return true;
-			} catch(PDOException $e) {
-				return false;
-			}
-		}
 	}
 
 
