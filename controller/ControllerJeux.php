@@ -73,7 +73,7 @@
 	    /************************************************************************************/
 
 	    public static function update() {
-	    	$Jeu = ModelJeux::getJeuById($_GET['id']);
+	    	$Jeu = ModelJeux::select($_GET['id']);
 	    	$nomJeu = $Jeu->getNomJeu();
 	    	$plateforme = $Jeu->getPlateforme();
 	    	$genre = $Jeu->getGenre();

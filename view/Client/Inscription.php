@@ -18,7 +18,7 @@
 
 		if (isset($inscrip) == true) {
 			if (!$inscrip)
-				echo "<p>Erreur : Les 2 mots de passes doivent être identiques</p>";
+				echo "<p>Erreur : L'inscription n'a pas aboutie</p>";
 		}
 
 	?>

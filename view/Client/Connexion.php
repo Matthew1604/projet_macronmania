@@ -13,6 +13,6 @@
 
 	?>
 	<input class="field" type="submit" value="Se connecter">
-	<p>Pas de compte ? <a href="?action=Inscription">S'inscrire immédiatement !</a></p>
+	<p>Pas de compte ? <a href="?controller=Client&action=Inscription">S'inscrire immédiatement !</a></p>
 
 </form>

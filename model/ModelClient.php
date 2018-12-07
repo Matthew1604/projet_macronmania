@@ -72,21 +72,25 @@
   		/************************************************************************************/
 
 		public function create() {
-			$sql = "INSERT INTO Clients(idClient, pseudoClient, nomClient, prenomClient, mailClient, mdpClient)
-					VALUES(NULL, :pseudo, :nom, :prenom, :email, :mdp)";
-		  	$req_prep = Model::$pdo->prepare($sql);
+			try {
+				$sql = "INSERT INTO Clients(idClient, pseudoClient, nomClient, prenomClient, mailClient, mdpClient)
+						VALUES(NULL, :pseudo, :nom, :prenom, :email, :mdp)";
+			  	$req_prep = Model::$pdo->prepare($sql);
 
-		    $pass_hach = hash('sha256', $this->mdpClient);
+			    $pass_hach = hash('sha256', $this->mdpClient);
 
-		  	$values = array(
-				"pseudo" => $this->pseudoClient,
-				"nom" => $this->nomClient,
-				"prenom" => $this->prenomClient,
-				"email" => $this->mailClient,
-				"mdp" => $pass_hach
-		  	);
+			  	$values = array(
+					"pseudo" => $this->pseudoClient,
+					"nom" => $this->nomClient,
+					"prenom" => $this->prenomClient,
+					"email" => $this->mailClient,
+					"mdp" => $pass_hach
+			  	);
 
-		  	$req_prep -> execute($values);
+			  	$req_prep -> execute($values);
+			  } catch (PDOException $e) {
+			  	print_r($e);
+			  }
 		}
 
 	}

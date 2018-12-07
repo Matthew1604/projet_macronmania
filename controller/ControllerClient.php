@@ -8,6 +8,7 @@
 		/************************************************************************************/
 
 	    public static function Compte() {
+
 	    	$pagetitle = 'MacronMania | Compte';
 	    	$controller = 'Client';
 	    	$view = 'Compte';
@@ -95,8 +96,8 @@
 	    				require_once(File::build_path(array('model', 'ModelJeux.php')));
 	    				$allJeux = ModelJeux::selectAll();
 	    				$pagetitle = 'MacronMania | Accueil';
-				        $controller = 'Jeux';
-				        $view = 'Accueil';
+				        $controller = 'Client';
+				        $view = 'Connected';
 				        require (file::build_path(array('view', 'view.php')));
 	    			}
 	    			else {
@@ -112,6 +113,8 @@
 	    	}
 	    }
 
+	    /************************************************************************************/
+
 	    public static function Deconnexion() {
 	    	session_start(); 
 	    	session_unset();
@@ -120,8 +123,8 @@
 	    	require_once(File::build_path(array('model', 'ModelJeux.php')));
 	    	$allJeux = ModelJeux::selectAll();
 	    	$pagetitle = 'MacronMania | Accueil';
-			$controller = 'Jeux';
-			$view = 'Accueil';
+			$controller = 'Client';
+			$view = 'Deconnected';
 			require (file::build_path(array('view', 'view.php')));
 	    }
 

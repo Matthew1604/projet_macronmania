@@ -1,4 +1,7 @@
-<?php if(!isset($_SESSION['id'])) session_start(); ?>
+<?php if(!isset($_SESSION['id'])) session_start(); 
+	  require_once(File::build_path(array('controller', 'ControllerClient.php')));
+	  require_once(File::build_path(array('controller', 'ControllerJeux.php')));
+?>
 
 <!DOCTYPE html>
 	<html>
@@ -57,8 +60,7 @@
 			<main>
 				<div class="main">
 			<?php
-				$controller = static::$object;
-				$filepath = File::build_path(array("view", $controller, "$view.php"));
+				$filepath = File::build_path(array("view", static::$object, "$view.php"));
 				require $filepath;
 			?>
 				</div>
