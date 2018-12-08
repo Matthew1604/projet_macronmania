@@ -1,14 +1,15 @@
 <?php
 $tableName = 'Jeux';
 $primaryKey = 'idJeu';
-$tabObject = array('ModelJeuxidJeux' => '1',
-				   'ModelJeuxnomJeu' => 'Red');
+$data = array('nomJeux' => 'Red Dead',
+				   'plateforme' => 'PS4');
 
-$sql = "INSERT INTO $tableName VALUES ($primaryKey = NULL, ";
-foreach ($tabObject as $key => $value) {
-	if ($key != $primaryKey)
-		$sql .= "$key = :$key, ";
+$sql = "INSERT INTO $tableName VALUES (NULL, ";
+foreach ($data as $key => $value) {
+		$sql .= ":$key, ";
 }
+$sql = rtrim($sql, ', ');
+$sql .= ")";
 
 echo $sql;
 

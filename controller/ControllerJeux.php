@@ -64,9 +64,14 @@
 	    /************************************************************************************/
 
 	    public static function created() {
-	    	$Jeu = new ModelJeux($_GET['nom'], $_GET['plateforme'], $_GET['genre'], $_GET['image'], $_GET['note'], $_GET['prix']);
-	    	$msg = $Jeu->save();
-	    	if ($Jeu->save()) {
+	    	$save = ModelJeux::save(array('nomJeu' => $_GET['nom'],
+									   	  'plateforme' => $_GET['plateforme'],
+									   	  'genre' => $_GET['genre'],
+									   	  'image' => $_GET['image'],
+									   	  'noteSur5' => $_GET['note'],
+									   	  'prix' => $_GET['prix']));
+
+	    	if ($save) {
 	    		$msg = "Le jeu a bien été ajouté";
 	    	} else {
 	    		$msg = "Erreur, le jeu n'a pas été créé";

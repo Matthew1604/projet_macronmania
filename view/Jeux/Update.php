@@ -1,9 +1,9 @@
-<h1>Modifier</h1>
+<h1><?php if($action == "update") echo "Modifier"; else echo "Ajouter un jeu"; ?></h1>
 
 <form class="formulaire" action="" method="get">
 
 	<input type="hidden" name="action" <?php echo 'value="' . $action . '"'; ?> />
-	<input type="hidden" name="id" <?php if (isset($_GET['id'])) echo 'value="' . $_GET['id'] . '"'; ?> />
+	<?php if (isset($_GET['id'])) echo '<input type="hidden" name="id" value="' . $_GET['id'] . '" />'; ?>
 
 	<input class="field" type="text" name="nom" placeholder="Nom du jeu" <?php echo 'value="' . $nomJeu . '"'; ?> /><br/>
 

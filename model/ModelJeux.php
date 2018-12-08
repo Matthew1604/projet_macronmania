@@ -84,7 +84,7 @@
 
 		/************************************************************************************/
 
-		public function save() {
+		/*public function save() {
 			try {
 				$sql = 'INSERT INTO Jeux VALUES (NULL, :nom, :plateforme, :genre, :image, :note, :prix)';
 				$res = Model::$pdo->prepare($sql);
@@ -100,7 +100,7 @@
 			catch (PDOException $e) {
 				return false;
 			}
-		}
+		}*/
 
 		/************************************************************************************/
 

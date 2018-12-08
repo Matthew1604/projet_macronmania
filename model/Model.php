@@ -104,6 +104,7 @@ require_once(File::build_path(array('config', 'Conf.php')));
 				$res = Model::$pdo->prepare($sql);
 				$res->execute($data);
 				return true;
+
 			} catch (PDOException $e) {
 				return false;
 			}
@@ -111,31 +112,23 @@ require_once(File::build_path(array('config', 'Conf.php')));
 
 		/************************************************************************************/
 
-		public function save() {
-			$tableName = static::$object;
-			$className = 'Model'.ucfirst($tableName);
-			$primaryKey = static::$primary;
-
+		public static function save($data) {
 			try {
+				$tableName = static::$object;
+				$className = 'Model'.ucfirst($tableName);
+				$primaryKey = static::$primary;
 
-				$tabObject = (array)$this;
 				$sql = "INSERT INTO $tableName VALUES (NULL, ";
-				foreach ($tabObject as $key => $value) {
-					if ($key != $primaryKey)
-						$sql .= "$key = :$key, ";
+				foreach ($data as $key => $value) {
+					$sql .= ":$key, ";
 				}
+				$sql = rtrim($sql, ', ');
+				$sql .= ")";
 
 				$res = Model::$pdo->prepare($sql);
-				$values = array('nom' => $this->getNomJeu(), 
-								'plateforme' => $this->getPlateforme(),
-								'genre' => $this->getGenre(),
-								'image' => $this->getImage(),
-								'note' => $this->getNote(),
-								'prix' => $this->getPrix());
-				$res->execute($values);
+				$res->execute($data);
 				return true;
-			}
-			catch (PDOException $e) {
+			} catch (PDOException $e) {
 				return false;
 			}
 		}
