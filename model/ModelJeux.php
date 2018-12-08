@@ -84,27 +84,6 @@
 
 		/************************************************************************************/
 
-		/*public function save() {
-			try {
-				$sql = 'INSERT INTO Jeux VALUES (NULL, :nom, :plateforme, :genre, :image, :note, :prix)';
-				$res = Model::$pdo->prepare($sql);
-				$values = array('nom' => $this->getNomJeu(), 
-								'plateforme' => $this->getPlateforme(),
-								'genre' => $this->getGenre(),
-								'image' => $this->getImage(),
-								'note' => $this->getNote(),
-								'prix' => $this->getPrix());
-				$res->execute($values);
-				return true;
-			}
-			catch (PDOException $e) {
-				return false;
-			}
-		}*/
-
-		/************************************************************************************/
-
-
 	}
 
 

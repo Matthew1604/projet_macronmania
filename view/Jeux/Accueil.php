@@ -9,7 +9,7 @@
 
 		echo '<p><a class="nomJeux" href="?action=read&id=' . $v->getId() . '">' . $v->getNomJeu() . "</a> | " . $v->getPlateforme();
 
-    if (isset($_SESSION['id']) && $_SESSION['id'] == 1)
+    if (isset($_SESSION['id']) && $_SESSION['isAdmin'])
       echo ' [<a href="?action=update&id=' . $v->getId() . '"> Modifier </a>] [<a href="?action=delete&id=' . $v->getId() . '"> Supprimer </a>]</p>';
     else
       echo "</p>";

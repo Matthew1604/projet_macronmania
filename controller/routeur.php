@@ -1,7 +1,7 @@
 <?php
 
 	require_once(File::build_path(array('controller', 'ControllerJeux.php')));
-	require_once(File::build_path(array('controller', 'ControllerClient.php')));
+	require_once(File::build_path(array('controller', 'ControllerClients.php')));
 	
 	if (!isset($_GET['controller'])) {
 		$controller = 'Jeux';

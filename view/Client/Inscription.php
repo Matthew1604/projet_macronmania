@@ -16,7 +16,7 @@
 
 	<?php 
 
-		if (isset($inscrip) == true) {
+		if (isset($inscrip)) {
 			if (!$inscrip)
 				echo "<p>Erreur : L'inscription n'a pas aboutie</p>";
 		}

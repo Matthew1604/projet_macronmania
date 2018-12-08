@@ -145,15 +145,6 @@ main > div > h1 {
 	margin-bottom: 10px;
 }
 
-#genre {
-	width: 180px;
-}
-
-#ordre {
-	width: 180px;
-}
-
-
 header > a, header > nav > div > a {
 	text-decoration: none;
 }
@@ -212,6 +203,14 @@ footer {
 	margin-bottom: 10px;
 }
 
+.fieldReadonly {
+	width : 40%;
+	height: 50px;
+	font-size: 20px;
+	margin-bottom: 10px;
+	background-color: antiquewhite;
+}
+
 .message {
 	width : 41%;
 	height: 125px;
@@ -225,6 +224,7 @@ footer {
 
 .info {
 	display: flex;
+	flex-direction: column;
 	margin: 20px auto;
 	width: 90%;
 	border: 1px solid;
@@ -232,25 +232,19 @@ footer {
 }
 
 .info > .listeInfo {
-	margin: 16px 0px 10px 260px;
+	margin: auto;
 	line-height: 3em;
 	list-style: none;
 }
 
-.info > .listeButton {
-	line-height: 3em;
-	list-style: none;
+.info > form {
+	margin: 10px auto;
 }
 
-.modifyButton {
-	margin-bottom: 5px;
-	font-size: 14pt;
-	cursor: pointer;
-}
-
-.modifyButtonDisabled {
-	margin-bottom: 5px;
-	font-size: 14pt;
+.modifClient {
+	height: 50px;
+	font-size: 20px;
+	margin-bottom: 10px;
 }
 
 /*******images******/

@@ -10,11 +10,11 @@
 		<li>Adresse e-mail : <?php echo $_SESSION['mail'] ?></li>
 		<li>Mot de passe : ********</li>
 	</ul>
-	<ul class="listeButton">
-		<li><button class="modifyButton" type="button" >Modifier</button></li>
-		<li><button class="modifyButton" type="button" >Modifier</button></li>
-		<li><button class="modifyButtonDisabled" type="button" disabled>Modifier</button></li>
-		<li><button class="modifyButton" type="button" >Modifier</button></li>
-		<li><button class="modifyButton" type="button" >Modifier</button></li>
-	</ul>
+
+	<form>
+		<input type="hidden" name="controller" value="Clients" />
+		<input type="hidden" name="action" value="update" />
+		<input class="modifClient" type="submit" value="Modifier mes informations" />
+	</form>
+
 </div>
