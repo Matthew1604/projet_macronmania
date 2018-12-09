@@ -227,6 +227,9 @@
 												  'mdpClient' => htmlspecialchars($nouveauMdp) ));
 			}
 
+			$Client = ModelClients::select($_SESSION['id']);
+			$_SESSION['mdp'] = $Client->getMdp();
+
 			if ($maj) {
 				$msg = "<p>Le mot de passe a bien été modifié</p>";
 			} else {
