@@ -96,7 +96,7 @@
 	    			$connect = false;
 	    		} else {
 	    			$user = $user[0];
-	    			if ($user->getMdp() == hash('sha256', $_POST['mdp'])) {
+	    			if ($user->getMdp() == Security::chiffrer($_POST['mdp'])) {
 	    				/**** TODO TD7 SESSIONS ****/
 	    				
 	    				session_start();
@@ -212,9 +212,9 @@
 			$Client = ModelClients::select($_SESSION['id']);
 
 			$ancienMdp = $Client->getMdp();
-			$nouveauMdp = hash('sha256', $_POST['nouveauMdp']);
+			$nouveauMdp = Security::chiffrer($_POST['nouveauMdp']);
 
-			if ($ancienMdp != hash('sha256', $_POST['ancienMdp']) || $_POST['nouveauMdp'] != $_POST['confirmMdp']) {
+			if ($ancienMdp != Security::chiffrer($_POST['ancienMdp']) || $_POST['nouveauMdp'] != $_POST['confirmMdp']) {
 				$erreurMdp = true;
 
 				$pagetitle = 'MacronMania | Modifier mot de passe';

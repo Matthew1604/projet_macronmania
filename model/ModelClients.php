@@ -1,6 +1,7 @@
 <?php
 
 	require_once(File::build_path(array('model', 'Model.php')));
+	require_once (File::build_path(array('lib', 'Security.php')));
 
 	class ModelClients extends Model {
 		private $idClient;
@@ -77,7 +78,7 @@
 						VALUES(NULL, :pseudo, :nom, :prenom, :email, :mdp)";
 			  	$req_prep = Model::$pdo->prepare($sql);
 
-			    $pass_hach = hash('sha256', $this->mdpClient);
+			    $pass_hach = Security::chiffrer($this->mdpClient);
 
 			  	$values = array(
 					"pseudo" => $this->pseudoClient,

@@ -35,7 +35,7 @@
 	?>
 
 	<div>
-		<input class = "bouton" type = "submit" value = "Valider">	
+		<input class = "field" type = "submit" value = "Valider">	
 	</div>
 
 </form>
