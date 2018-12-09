@@ -2,8 +2,9 @@
 # Created by https://www.gitignore.io/api/eclipse,sublimetext,intellij+all
 # Edit at https://www.gitignore.io/?templates=eclipse,sublimetext,intellij+all
 
-### Eclipse ###
+config/Conf.php
 
+### Eclipse ###
 .metadata
 bin/
 tmp/
