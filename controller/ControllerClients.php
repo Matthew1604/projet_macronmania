@@ -179,35 +179,66 @@
 			$_SESSION['mail'] = $client->getMail();
 
 			if ($maj) {
-				$msg = "Vos informations ont bien été modifiés";
+				$msg = "<p>Vos informations ont bien été modifiés</p>";
 			} else {
-				$msg = "Erreur, vos informations n'ont pas pu être modifiée";
+				$msg = "<p>Erreur, vos informations n'ont pas pu être modifiée</p>";
 			}
 
 			$pagetitle = 'MacronMania | Modifié';
 	        $controller = 'Client';
 	        $view = 'Updated';
 	    	require_once(file::build_path(array('view', 'view.php')));
+		}
 
-			/*$maj = ModelJeux::update(array('idJeu' => $_GET['id'],
-										   'nomJeu' => $_GET['nom'],
-										   'plateforme' => $_GET['plateforme'],
-										   'genre' => $_GET['genre'],
-										   'image' => $_GET['image'],
-										   'noteSur5' => $_GET['note'],
-										   'prix' => $_GET['prix']));
+		/************************************************************************************/
+
+		public static function updateMdp() {
+			session_start();
+			$Client = ModelClients::select($_SESSION['id']);
+			$id = $Client->getId();
+
+			$action = 'updatedMdp';
+			$pagetitle = 'MacronMania | Modifier mot de passe';
+	        $controller = 'Client';
+	        $view = 'UpdateMdp';
+	    	require_once(file::build_path(array('view', 'view.php')));
+		}
+
+		/************************************************************************************/
+
+		public static function updatedMdp() {
+			session_start();
+
+			$Client = ModelClients::select($_SESSION['id']);
+
+			$ancienMdp = $Client->getMdp();
+			$nouveauMdp = hash('sha256', $_POST['nouveauMdp']);
+
+			if ($ancienMdp != hash('sha256', $_POST['ancienMdp']) || $_POST['nouveauMdp'] != $_POST['confirmMdp']) {
+				$erreurMdp = true;
+
+				$pagetitle = 'MacronMania | Modifier mot de passe';
+		        $controller = 'Client';
+		        $view = 'UpdateMdp';
+		    	require_once(file::build_path(array('view', 'view.php')));
+		    	return false;
+			} else {
+				$maj = ModelClients::update(array('idClient' => $_SESSION['id'],
+												  'mdpClient' => htmlspecialchars($nouveauMdp) ));
+			}
 
 			if ($maj) {
-				$msg = "Le jeu à bien été modifié.";
+				$msg = "<p>Le mot de passe a bien été modifié</p>";
 			} else {
-				$msg = "Erreur, les modifications n'ont pas été prise en compte";
+				$msg = "<p>Erreur, le mot de passe n'a pas été modifié</p>";
 			}
 
 			$pagetitle = 'MacronMania | Modifié';
-	        $controller = 'Jeux';
-	        $view = 'Updated';
-	    	require_once(file::build_path(array('view', 'view.php')));*/
-		}   
+	        $controller = 'Client';
+	        $view = 'UpdatedMdp';
+	    	require_once(file::build_path(array('view', 'view.php')));
+
+		}
 
 	}
 

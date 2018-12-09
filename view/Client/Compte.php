@@ -14,7 +14,14 @@
 	<form>
 		<input type="hidden" name="controller" value="Clients" />
 		<input type="hidden" name="action" value="update" />
+
 		<input class="modifClient" type="submit" value="Modifier mes informations" />
+	</form>
+	<form>
+		<input type="hidden" name="controller" value="Clients" />
+		<input type="hidden" name="action" value="updateMdp" />
+
+		<input class="modifClient" type="submit" value="Modifier le mot de passe" />
 	</form>
 
 </div>
