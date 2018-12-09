@@ -56,8 +56,12 @@
 		    		$mail = htmlspecialchars($_POST['mail']);
 		    		$mdp = htmlspecialchars($_POST['mdp']);
 
-					$newClient = new ModelClients($pseudo, $nom, $prenom, $mail, $mdp);
-					$create = $newClient->create();
+					$create = ModelClients::save(array('pseudoClient' => $pseudo,
+													   'nomClient' => $nom,
+													   'prenomClient' => $prenom,
+													   'mailClient' => $mail,
+													   'mdpClient' => Security::chiffrer($mdp),
+													   'nonce' => NULL ));
 					if ($create) {
 						$pagetitle = 'MacronMania | Inscription terminée';
 				    	$controller = 'Client';
@@ -97,8 +101,7 @@
 	    		} else {
 	    			$user = $user[0];
 	    			if ($user->getMdp() == Security::chiffrer($_POST['mdp'])) {
-	    				/**** TODO TD7 SESSIONS ****/
-	    				
+	    					    				
 	    				session_start();
 	    				$_SESSION['id'] = $user->getId();
 	    				if ($_SESSION['id'] == 1) $_SESSION['isAdmin'] = true;

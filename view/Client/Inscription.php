@@ -12,7 +12,7 @@
 
 	<input class="field" type="password" name="mdpVerif" placeholder="*Confirmer mot de passe" /><br/>
 
-	<input class="field" type="text" name="mail" placeholder="*E-mail" /><br/>
+	<input class="field" type="email" name="mail" placeholder="*E-mail" /><br/>
 
 	<?php 
 

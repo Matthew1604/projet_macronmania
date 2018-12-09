@@ -64,12 +64,12 @@
 	    /************************************************************************************/
 
 	    public static function created() {
-	    	$save = ModelJeux::save(array('nomJeu' => $_GET['nom'],
-									   	  'plateforme' => $_GET['plateforme'],
-									   	  'genre' => $_GET['genre'],
-									   	  'image' => $_GET['image'],
-									   	  'noteSur5' => $_GET['note'],
-									   	  'prix' => $_GET['prix']));
+	    	$save = ModelJeux::save(array('nomJeu' => htmlspecialchars($_GET['nom']),
+									   	  'plateforme' => htmlspecialchars($_GET['plateforme']),
+									   	  'genre' => htmlspecialchars($_GET['genre']),
+									   	  'image' => htmlspecialchars($_GET['image']),
+									   	  'noteSur5' => htmlspecialchars($_GET['note']),
+									   	  'prix' => htmlspecialchars($_GET['prix'])));
 
 	    	if ($save) {
 	    		$msg = "Le jeu a bien été ajouté";

@@ -11,7 +11,7 @@
 
 	<input class="fieldReadonly" type="text" name="pseudo" <?php echo 'value="' . $pseudo . '"'; ?> readonly /><br/>
 
-	<input class="field" type="text" name="mail" <?php echo 'value="' . $mail . '"'; ?> /><br/>
+	<input class="field" type="email" name="mail" <?php echo 'value="' . $mail . '"'; ?> /><br/>
 	
 	<input class="field" type="submit" value="Modifier"/>
 

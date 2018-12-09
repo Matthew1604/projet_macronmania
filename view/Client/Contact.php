@@ -12,7 +12,7 @@
 	</div>
 
 	<div>
-		<input class = "field" type = "text" name = "mail" placeholder = "*Adresse Mail" <?php if(isset($_SESSION['id'])) echo ' value = "' . $_SESSION['mail'] . '"'; ?> required>
+		<input class = "field" type = "email" name = "mail" placeholder = "*Adresse Mail" <?php if(isset($_SESSION['id'])) echo ' value = "' . $_SESSION['mail'] . '"'; ?> required>
 	</div>
 
 	<div>
