@@ -25,11 +25,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `clients`
+-- Structure de la table `Clients`
 --
 
-DROP TABLE IF EXISTS `clients`;
-CREATE TABLE IF NOT EXISTS `clients` (
+DROP TABLE IF EXISTS `Clients`;
+CREATE TABLE IF NOT EXISTS `Clients` (
   `idClient` smallint(6) NOT NULL AUTO_INCREMENT,
   `pseudoClient` varchar(20) NOT NULL,
   `nomClient` varchar(20) NOT NULL,
@@ -41,19 +41,19 @@ CREATE TABLE IF NOT EXISTS `clients` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `clients`
+-- Déchargement des données de la table `Clients`
 --
 
-INSERT INTO `clients` (`idClient`, `pseudoClient`, `nomClient`, `prenomClient`, `mailClient`, `mdpClient`, `nonce`) VALUES
+INSERT INTO `Clients` (`idClient`, `pseudoClient`, `nomClient`, `prenomClient`, `mailClient`, `mdpClient`, `nonce`) VALUES
 (1, 'admin', 'Vergely', 'Matthew', 'vergely.matt@gmail.com', '1912f7dfde414ae3d023417c05fd55ce0adb99cd594bacd9adc87efcbb3101ed', ''),
 (2, 'skycrim', 'Bales', 'Jordan', 'jordanbales2@gmail.com', 'b50271682f3abbe7ec88351d833ccf7e741de8c405e60e602c5327e364d115a5', '');
 
 --
--- Déclencheurs `clients`
+-- Déclencheurs `Clients`
 --
 DROP TRIGGER IF EXISTS `trigger_pseudo`;
 DELIMITER $$
-CREATE TRIGGER `trigger_pseudo` BEFORE INSERT ON `clients` FOR EACH ROW BEGIN
+CREATE TRIGGER `trigger_pseudo` BEFORE INSERT ON `Clients` FOR EACH ROW BEGIN
 
 DECLARE v_pseudo INTEGER;
 DECLARE v_mail INTEGER;
@@ -75,11 +75,11 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `commandes`
+-- Structure de la table `Commandes`
 --
 
-DROP TABLE IF EXISTS `commandes`;
-CREATE TABLE IF NOT EXISTS `commandes` (
+DROP TABLE IF EXISTS `Commandes`;
+CREATE TABLE IF NOT EXISTS `Commandes` (
   `idCommande` smallint(6) NOT NULL AUTO_INCREMENT,
   `idClient` smallint(6) NOT NULL,
   `prixCommande` int(11) NOT NULL,
@@ -90,11 +90,11 @@ CREATE TABLE IF NOT EXISTS `commandes` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `jeux`
+-- Structure de la table `Jeux`
 --
 
-DROP TABLE IF EXISTS `jeux`;
-CREATE TABLE IF NOT EXISTS `jeux` (
+DROP TABLE IF EXISTS `Jeux`;
+CREATE TABLE IF NOT EXISTS `Jeux` (
   `idJeu` smallint(6) NOT NULL AUTO_INCREMENT,
   `nomJeu` varchar(35) NOT NULL,
   `plateforme` enum('PS4','Xbox One') NOT NULL,
@@ -106,10 +106,10 @@ CREATE TABLE IF NOT EXISTS `jeux` (
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `jeux`
+-- Déchargement des données de la table `Jeux`
 --
 
-INSERT INTO `jeux` (`idJeu`, `nomJeu`, `plateforme`, `genre`, `image`, `noteSur5`, `prix`) VALUES
+INSERT INTO `Jeux` (`idJeu`, `nomJeu`, `plateforme`, `genre`, `image`, `noteSur5`, `prix`) VALUES
 (1, 'Red Dead Redemption 2', 'PS4', 'Action / Aventure', 'https://medias.micromania.fr/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/1/5/1599919_max.jpg', 4.8, 70),
 (2, 'Red Dead Redemption 2', 'Xbox One', 'Action / Aventure', 'https://medias.micromania.fr/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/1/5/1599927_max.jpg', 4.8, 70),
 (3, 'Forza Motorsport 7', 'Xbox One', 'Course', 'https://medias.micromania.fr/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/1/5/1546051_max.jpg', 4.4, 50),
@@ -132,8 +132,8 @@ INSERT INTO `jeux` (`idJeu`, `nomJeu`, `plateforme`, `genre`, `image`, `noteSur5
 -- Structure de la table `passercommande`
 --
 
-DROP TABLE IF EXISTS `passercommande`;
-CREATE TABLE IF NOT EXISTS `passercommande` (
+DROP TABLE IF EXISTS `Passercommande`;
+CREATE TABLE IF NOT EXISTS `Passercommande` (
   `idCommande` smallint(6) NOT NULL,
   `idJeu` smallint(6) NOT NULL,
   `quantite` int(11) NOT NULL,
@@ -146,17 +146,17 @@ CREATE TABLE IF NOT EXISTS `passercommande` (
 --
 
 --
--- Contraintes pour la table `commandes`
+-- Contraintes pour la table `Commandes`
 --
-ALTER TABLE `commandes`
-  ADD CONSTRAINT `fk_Commande_idClient` FOREIGN KEY (`idClient`) REFERENCES `clients` (`idClient`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Commandes`
+  ADD CONSTRAINT `fk_Commande_idClient` FOREIGN KEY (`idClient`) REFERENCES `Clients` (`idClient`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `passercommande`
 --
-ALTER TABLE `passercommande`
-  ADD CONSTRAINT `fk_PasserCommande_idCommande` FOREIGN KEY (`idCommande`) REFERENCES `commandes` (`idCommande`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_PasserCommande_idJeu` FOREIGN KEY (`idJeu`) REFERENCES `jeux` (`idJeu`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Passercommande`
+  ADD CONSTRAINT `fk_PasserCommande_idCommande` FOREIGN KEY (`idCommande`) REFERENCES `Commandes` (`idCommande`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_PasserCommande_idJeu` FOREIGN KEY (`idJeu`) REFERENCES `Jeux` (`idJeu`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
