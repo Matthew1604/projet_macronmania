@@ -64,14 +64,15 @@
 	    /************************************************************************************/
 
 	    public static function created() {
-	    	$save = ModelJeux::save(array('nomJeu' => htmlspecialchars($_GET['nom']),
+	    	$save = ModelJeux::save(array('idJeu' => NULL,
+	    								  'nomJeu' => htmlspecialchars($_GET['nom']),
 									   	  'plateforme' => htmlspecialchars($_GET['plateforme']),
 									   	  'genre' => htmlspecialchars($_GET['genre']),
 									   	  'image' => htmlspecialchars($_GET['image']),
 									   	  'noteSur5' => htmlspecialchars($_GET['note']),
 									   	  'prix' => htmlspecialchars($_GET['prix'])));
 
-	    	if ($save) {
+	    	if ($save == true) {
 	    		$msg = "Le jeu a bien été ajouté";
 	    	} else {
 	    		$msg = "Erreur, le jeu n'a pas été créé";

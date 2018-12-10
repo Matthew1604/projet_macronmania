@@ -6,9 +6,9 @@
 		echo '<h2 class="noResult">Pas de resultats</h2>
 			  <div style="text-align: center"><img id="no-se" src="images/no-se.jpg" /></div>';
 	else {
-		echo '<div class = "resJeux">';
+		echo '<div class = "gridJeux">';
 		foreach ($resRecherche as $v) {
-		 	echo '<div class = "imgNomJeux"><img src="' . $v->getImage() . '" /><br /><p>' . $v->getNomJeu() . ' | ' . $v->getPlateforme() . '</p></div>';
+		 	echo '<div><a href="?action=read&id=' . $v->getId() . '"><img src="' . $v->getImage() . '" /></a><br /><a href="?action=read&id=' . $v->getId() . '"><p class="nomJeu">' . $v->getNomJeu() . ' | ' . $v->getPlateforme() . '</p></a></div>';
 		}
 		echo '</div>';
 	}

@@ -3,7 +3,7 @@ html {
 	height:100%;
 	margin:0;
  	padding:0;
- 	line-height: 1.3em;
+ 	line-height: 1.2em;
  	font-family: Arial;
  	font-size: 14pt;
 }
@@ -62,8 +62,7 @@ body{
 }
 
 .main {
-	margin-left: 10px;
-	margin-right: 10px;
+	margin: 10px 10px 10px 10px;
 }
 
 a {
@@ -76,11 +75,11 @@ a:visited {
 	text-decoration: none;
 }
 
-.nomJeux {
+.nomJeu {
 	color: #146eea;
 }
 
-.nomJeux:visited {
+.nomJeu:visited {
 	color: #146eea;
 }
 
@@ -167,7 +166,7 @@ footer {
 
 }
 
-.resJeux {
+.gridJeux {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-gap: 60px;
@@ -175,13 +174,28 @@ footer {
 	line-height: 100%;
 }
 
-.resJeux > div > p {
+.gridJeux > div > p {
 	text-align: center;
 }
 
-.resJeux > div > img {
+.gridJeux > div > a > img {
 	height: 400px;
 	width: 400px;
+}
+
+.readJeu {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.readJeu > div > img {
+	height: 400px;
+	width: 400px;
+}
+
+.ajoutPanier {
+	text-align: center;
+	margin-top: 10px;
 }
 
 /********Contact&Compte*********/

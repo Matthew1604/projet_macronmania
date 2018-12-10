@@ -62,21 +62,24 @@
 													   'mailClient' => $mail,
 													   'mdpClient' => Security::chiffrer($mdp),
 													   'nonce' => NULL ));
-					if ($create) {
+					if ($create == 'true') {
 						$pagetitle = 'MacronMania | Inscription terminée';
 				    	$controller = 'Client';
 				    	$view = 'FinishInscription';
 				        require(File::build_path(array('view', 'view.php')));
-				    }
-				    else {
-				    	$inscrip = false;
+				    } else {
+				    	if ($create == 20001) $msg = "Le pseudo est déjà utilisé !";
+				    	else if ($create == 20002) $msg = "L'adresse e-mail est déjà utilisée sur un autre compte !";
+				    	else $msg = "L'inscription n'a pas aboutie";
+
 						$pagetitle = 'MacronMania | Inscription';
 				    	$controller = 'Client';
 				    	$view = 'Inscription';
 						require (File::build_path(array('view', "view.php")));
 				    }
 				} else {
-					$inscrip = false;
+					$msg = "Les mots de passe doivent être les mêmes";
+
 					$pagetitle = 'MacronMania | Inscription';
 			    	$controller = 'Client';
 			    	$view = 'Inscription';

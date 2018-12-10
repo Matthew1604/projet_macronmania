@@ -128,7 +128,8 @@ require_once(File::build_path(array('config', 'Conf.php')));
 				$res->execute($data);
 				return true;
 			} catch (PDOException $e) {
-				return false;
+				return $e->getCode();
+
 			}
 		}
 	}
