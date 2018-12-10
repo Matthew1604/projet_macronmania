@@ -87,6 +87,14 @@
 
 	    /************************************************************************************/
 
+	    public static function validate() {
+	    	session_start();
+	    	
+
+	    }
+
+	    /************************************************************************************/
+
 	    public static function Connexion() {
     		if (empty($_POST['pseudo']) || empty($_POST['mdp'])) {
 	    		$pagetitle = 'MacronMania | Connexion';
@@ -98,15 +106,18 @@
 	    		$user = ModelClients::connect($_POST['pseudo']);
 	    		if ($user == false) {
 	    			$connect = false;
-	    		} else {
+	    		} else if ($user[0]->getNonce() != NULL) {
+	    			$connect = false;
+	    		}
+
+	    		else {
 	    			$user = $user[0];
 	    			if ($user->getMdp() == Security::chiffrer($_POST['mdp'])) {
 	    					    				
 	    				session_start();
-	    				$_SESSION['id'] = $user->getId();
-	    				if ($_SESSION['id'] == 1) $_SESSION['isAdmin'] = true;
-	    				else $_SESSION['isAdmin'] = false;
 	    				$_SESSION['pseudo'] = $user->getPseudo();
+	    				if ($_SESSION['pseudo'] == 'admin') $_SESSION['isAdmin'] = true;
+	    				else $_SESSION['isAdmin'] = false;
 	    				$_SESSION['nom'] = $user->getNom();
 	    				$_SESSION['prenom'] = $user->getPrenom();
 	    				$_SESSION['mail'] = $user->getMail();
@@ -152,8 +163,7 @@
 
 		public static function update() {
 			session_start();
-			$Client = ModelClients::select($_SESSION['id']);
-			$id = $Client->getId();
+			$Client = ModelClients::select($_SESSION['pseudo']);
 			$pseudo = $Client->getPseudo();
 			$nom = $Client->getNom();
 			$prenom = $Client->getPrenom();
@@ -171,12 +181,12 @@
 
 		public static function updated() {
 			session_start();
-			$maj = ModelClients::update(array('idClient' => $_SESSION['id'],
+			$maj = ModelClients::update(array('pseudoClient' => $_SESSION['pseudo'],
 											  'nomClient' => htmlspecialchars($_GET['nom']),
 											  'prenomClient' => htmlspecialchars($_GET['prenom']),
 											  'mailClient' => htmlspecialchars($_GET['mail']) ));
 
-			$client = ModelClients::select($_SESSION['id']);
+			$client = ModelClients::select($_SESSION['pseudo']);
 			$_SESSION['nom'] = $client->getNom();
 			$_SESSION['prenom'] = $client->getPrenom();
 			$_SESSION['mail'] = $client->getMail();
@@ -197,8 +207,8 @@
 
 		public static function updateMdp() {
 			session_start();
-			$Client = ModelClients::select($_SESSION['id']);
-			$id = $Client->getId();
+			$Client = ModelClients::select($_SESSION['pseudo']);
+			$pseudo = $Client->getPseudo();
 
 			$action = 'updatedMdp';
 			$pagetitle = 'MacronMania | Modifier mot de passe';
@@ -212,7 +222,7 @@
 		public static function updatedMdp() {
 			session_start();
 
-			$Client = ModelClients::select($_SESSION['id']);
+			$Client = ModelClients::select($_SESSION['pseudo']);
 
 			$ancienMdp = $Client->getMdp();
 			$nouveauMdp = Security::chiffrer($_POST['nouveauMdp']);
@@ -226,11 +236,11 @@
 		    	require_once(file::build_path(array('view', 'view.php')));
 		    	return false;
 			} else {
-				$maj = ModelClients::update(array('idClient' => $_SESSION['id'],
+				$maj = ModelClients::update(array('pseudoClient' => $_SESSION['pseudo'],
 												  'mdpClient' => htmlspecialchars($nouveauMdp) ));
 			}
 
-			$Client = ModelClients::select($_SESSION['id']);
+			$Client = ModelClients::select($_SESSION['pseudo']);
 			$_SESSION['mdp'] = $Client->getMdp();
 
 			if ($maj) {

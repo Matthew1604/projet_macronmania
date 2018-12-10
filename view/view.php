@@ -1,4 +1,4 @@
-<?php if(!isset($_SESSION['id'])) session_start(); 
+<?php if(!isset($_SESSION['pseudo'])) session_start(); 
 	  require_once(File::build_path(array('controller', 'ControllerClients.php')));
 	  require_once(File::build_path(array('controller', 'ControllerJeux.php')));
 ?>
@@ -34,16 +34,16 @@
 			<nav>
 				<?php
 
-					if(isset($_SESSION['id']) && $_SESSION['id'] == 1) {
+					if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == 'admin') {
 						echo '<div><a href="?action=create">Ajouter un jeu</a></div>';
 					}
 					else echo '<div><a href="?controller=Clients&action=Contact">Contact</a></div>';
 
 				?>
-				<div><?php if(isset($_SESSION['id'])) echo '<a href="?controller=Clients&action=Compte">Mon compte</a>'; else echo '<a href="?controller=Clients&action=Connexion">Se connecter</a>'; ?></div>
+				<div><?php if(isset($_SESSION['pseudo'])) echo '<a href="?controller=Clients&action=Compte">Mon compte</a>'; else echo '<a href="?controller=Clients&action=Connexion">Se connecter</a>'; ?></div>
 				<?php 
 
-					if(isset($_SESSION['id']))
+					if(isset($_SESSION['pseudo']))
 						echo '<div><a href="?controller=Clients&action=Deconnexion">Deconnexion</a></div>';
 
 				?>

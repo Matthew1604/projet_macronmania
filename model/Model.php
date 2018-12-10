@@ -115,10 +115,9 @@ require_once(File::build_path(array('config', 'Conf.php')));
 		public static function save($data) {
 			try {
 				$tableName = static::$object;
-				$className = 'Model'.ucfirst($tableName);
 				$primaryKey = static::$primary;
 
-				$sql = "INSERT INTO $tableName VALUES (NULL, ";
+				$sql = "INSERT INTO $tableName VALUES (";
 				foreach ($data as $key => $value) {
 					$sql .= ":$key, ";
 				}

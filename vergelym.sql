@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1
+-- http://www.phpmyadmin.net
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 10 déc. 2018 à 09:37
--- Version du serveur :  5.7.23
--- Version de PHP :  7.2.10
+-- Client :  localhost
+-- Généré le :  Lun 10 Décembre 2018 à 16:20
+-- Version du serveur :  5.5.47-0+deb8u1
+-- Version de PHP :  7.0.4-1~dotdeb+8.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,30 +26,26 @@ SET time_zone = "+00:00";
 -- Structure de la table `Clients`
 --
 
-DROP TABLE IF EXISTS `Clients`;
-CREATE TABLE IF NOT EXISTS `Clients` (
-  `idClient` smallint(6) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Clients` (
   `pseudoClient` varchar(20) NOT NULL,
   `nomClient` varchar(20) NOT NULL,
   `prenomClient` varchar(20) NOT NULL,
   `mailClient` varchar(25) NOT NULL,
   `mdpClient` varchar(150) NOT NULL,
-  `nonce` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`idClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `nonce` varchar(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `Clients`
+-- Contenu de la table `Clients`
 --
 
-INSERT INTO `Clients` (`idClient`, `pseudoClient`, `nomClient`, `prenomClient`, `mailClient`, `mdpClient`, `nonce`) VALUES
-(1, 'admin', 'Vergely', 'Matthew', 'vergely.matt@gmail.com', '1912f7dfde414ae3d023417c05fd55ce0adb99cd594bacd9adc87efcbb3101ed', ''),
-(2, 'skycrim', 'Bales', 'Jordan', 'jordanbales2@gmail.com', 'b50271682f3abbe7ec88351d833ccf7e741de8c405e60e602c5327e364d115a5', '');
+INSERT INTO `Clients` (`pseudoClient`, `nomClient`, `prenomClient`, `mailClient`, `mdpClient`, `nonce`) VALUES
+('admin', 'Vergely', 'Matthew', 'vergely.matt@gmail.com', '1912f7dfde414ae3d023417c05fd55ce0adb99cd594bacd9adc87efcbb3101ed', ''),
+('skycrim', 'Bales', 'Jordan', 'jordanbales2@gmail.com', 'b50271682f3abbe7ec88351d833ccf7e741de8c405e60e602c5327e364d115a5', '');
 
 --
 -- Déclencheurs `Clients`
 --
-DROP TRIGGER IF EXISTS `trigger_pseudo`;
 DELIMITER $$
 CREATE TRIGGER `trigger_pseudo` BEFORE INSERT ON `Clients` FOR EACH ROW BEGIN
 
@@ -78,13 +72,10 @@ DELIMITER ;
 -- Structure de la table `Commandes`
 --
 
-DROP TABLE IF EXISTS `Commandes`;
-CREATE TABLE IF NOT EXISTS `Commandes` (
-  `idCommande` smallint(6) NOT NULL AUTO_INCREMENT,
-  `idClient` smallint(6) NOT NULL,
-  `prixCommande` int(11) NOT NULL,
-  PRIMARY KEY (`idCommande`),
-  KEY `fk_Commande_idClient` (`idClient`)
+CREATE TABLE `Commandes` (
+  `idCommande` smallint(6) NOT NULL,
+  `pseudoClient` varchar(20) NOT NULL,
+  `prixCommande` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -93,20 +84,18 @@ CREATE TABLE IF NOT EXISTS `Commandes` (
 -- Structure de la table `Jeux`
 --
 
-DROP TABLE IF EXISTS `Jeux`;
-CREATE TABLE IF NOT EXISTS `Jeux` (
-  `idJeu` smallint(6) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Jeux` (
+  `idJeu` smallint(6) NOT NULL,
   `nomJeu` varchar(35) NOT NULL,
   `plateforme` enum('PS4','Xbox One') NOT NULL,
   `genre` enum('Action / Aventure','Course','FPS','Sport','Gestion','Activités récréatives') CHARACTER SET utf8 COLLATE utf8_esperanto_ci NOT NULL,
   `image` varchar(150) NOT NULL,
   `noteSur5` float DEFAULT NULL,
-  `prix` smallint(6) NOT NULL,
-  PRIMARY KEY (`idJeu`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+  `prix` smallint(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `Jeux`
+-- Contenu de la table `Jeux`
 --
 
 INSERT INTO `Jeux` (`idJeu`, `nomJeu`, `plateforme`, `genre`, `image`, `noteSur5`, `prix`) VALUES
@@ -129,35 +118,75 @@ INSERT INTO `Jeux` (`idJeu`, `nomJeu`, `plateforme`, `genre`, `image`, `noteSur5
 -- --------------------------------------------------------
 
 --
--- Structure de la table `passercommande`
+-- Structure de la table `Passercommande`
 --
 
-DROP TABLE IF EXISTS `Passercommande`;
-CREATE TABLE IF NOT EXISTS `Passercommande` (
+CREATE TABLE `Passercommande` (
   `idCommande` smallint(6) NOT NULL,
   `idJeu` smallint(6) NOT NULL,
-  `quantite` int(11) NOT NULL,
-  PRIMARY KEY (`idCommande`,`idJeu`),
-  KEY `fk_PasserCommande_idJeu` (`idJeu`)
+  `quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contraintes pour les tables déchargées
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `Clients`
+--
+ALTER TABLE `Clients`
+  ADD PRIMARY KEY (`pseudoClient`);
+
+--
+-- Index pour la table `Commandes`
+--
+ALTER TABLE `Commandes`
+  ADD PRIMARY KEY (`idCommande`),
+  ADD KEY `fk_Commande_idClient` (`pseudoClient`);
+
+--
+-- Index pour la table `Jeux`
+--
+ALTER TABLE `Jeux`
+  ADD PRIMARY KEY (`idJeu`);
+
+--
+-- Index pour la table `Passercommande`
+--
+ALTER TABLE `Passercommande`
+  ADD PRIMARY KEY (`idCommande`,`idJeu`),
+  ADD KEY `fk_PasserCommande_idJeu` (`idJeu`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `Commandes`
+--
+ALTER TABLE `Commandes`
+  MODIFY `idCommande` smallint(6) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `Jeux`
+--
+ALTER TABLE `Jeux`
+  MODIFY `idJeu` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+--
+-- Contraintes pour les tables exportées
 --
 
 --
 -- Contraintes pour la table `Commandes`
 --
 ALTER TABLE `Commandes`
-  ADD CONSTRAINT `fk_Commande_idClient` FOREIGN KEY (`idClient`) REFERENCES `Clients` (`idClient`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Commande_idClient` FOREIGN KEY (`pseudoClient`) REFERENCES `Clients` (`pseudoClient`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `passercommande`
+-- Contraintes pour la table `Passercommande`
 --
 ALTER TABLE `Passercommande`
   ADD CONSTRAINT `fk_PasserCommande_idCommande` FOREIGN KEY (`idCommande`) REFERENCES `Commandes` (`idCommande`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_PasserCommande_idJeu` FOREIGN KEY (`idJeu`) REFERENCES `Jeux` (`idJeu`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -4,32 +4,29 @@
 	require_once (File::build_path(array('lib', 'Security.php')));
 
 	class ModelClients extends Model {
-		private $idClient;
 		private $pseudoClient;
 		private $nomClient;
 		private $prenomClient;
 		private $mailClient;
 		private $mdpClient;
+		private $nonce;
 		protected static $object = 'Clients';
-		protected static $primary = 'idClient';
+		protected static $primary = 'pseudoClient';
 
 		/************************************************************************************/
 		/************************************************************************************/
 		/************************************************************************************/
 
-		public function __construct($pseudo = NULL, $nom = NULL,
-									$prenom = NULL, $mail = NULL, $mdp = NULL) {
+		public function __construct($pseudo = NULL, $nom = NULL, $prenom = NULL,
+									$mail = NULL, $mdp = NULL, $nonce = NULL) {
 			if (!is_null($pseudo) && !is_null($nom) && !is_null($prenom) && !is_null($mail) && !is_null($mdp)) {
 					$this->pseudoClient = $pseudo;
 					$this->nomClient = $nom;
 					$this->prenomClient = $prenom;
 					$this->mailClient = $mail;
 					$this->mdpClient = $mdp;
+					$this->nonce = $nonce;
 			}
-		}
-
-		public function getId() {
-			return $this->idClient;
 		}
 
 		public function getPseudo() {
@@ -52,6 +49,10 @@
 			return $this->mdpClient;
 		}
 
+		public function getNonce() {
+			return $this->nonce;
+		}
+
 		/************************************************************************************/
 		/************************************************************************************/
 
@@ -70,29 +71,9 @@
 		    return $user;
 		}
 
-  		/************************************************************************************/
+		/************************************************************************************/
 
-		public function create() {
-			try {
-				$sql = "INSERT INTO Clients(idClient, pseudoClient, nomClient, prenomClient, mailClient, mdpClient)
-						VALUES(NULL, :pseudo, :nom, :prenom, :email, :mdp)";
-			  	$req_prep = Model::$pdo->prepare($sql);
-
-			    $pass_hach = Security::chiffrer($this->mdpClient);
-
-			  	$values = array(
-					"pseudo" => $this->pseudoClient,
-					"nom" => $this->nomClient,
-					"prenom" => $this->prenomClient,
-					"email" => $this->mailClient,
-					"mdp" => $pass_hach
-			  	);
-			  	$req_prep -> execute($values);
-			  	return true;
-			  } catch (PDOException $e) {
-			  	return false;
-			  }
-		}
+		
 
 	}
 

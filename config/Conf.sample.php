@@ -1,10 +1,11 @@
 <?php
 
 class Conf
+
 {
     static private $debug = True;
 
-    static private $databases = array(
+        static private $databases = array(
         // Le nom d'hote est webinfo a l'IUT
         // ou localhost sur votre machine
         'hostname' => 'myHostname',
@@ -51,4 +52,6 @@ class Conf
     }
 
 }
+
+?>
 
