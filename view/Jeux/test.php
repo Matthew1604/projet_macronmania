@@ -1,16 +1,15 @@
 <?php
-$tableName = 'Jeux';
-$primaryKey = 'idJeu';
-$data = array('nomJeux' => 'Red Dead',
-				   'plateforme' => 'PS4');
+	require_once('../../lib/File.php');
 
-$sql = "INSERT INTO $tableName VALUES (NULL, ";
-foreach ($data as $key => $value) {
-		$sql .= ":$key, ";
-}
-$sql = rtrim($sql, ', ');
-$sql .= ")";
+	$pseudo = "mister_you";
+	$nonce = "drtfvgyb4856cdrftv4785cdftgv";
 
-echo $sql;
+	$mail = '<p>Bonjour, et merci de vous être inscrit sur notre site. 
+							Voici un lien qui vous permet de vous connecter.</p>
+							<a href="' . 'localhost/html/projetPHP/' . '?action=validate&pseudo=' . $pseudo . '&nonce=' . $nonce . 
+							'">http://blablabla</a>
+							<p>A bientôt sur notre site MacronMania ! Parce que c\'est notre projet !</p>';
+
+	echo $mail;
 
 ?>

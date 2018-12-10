@@ -112,7 +112,7 @@
 										   'noteSur5' => $_GET['note'],
 										   'prix' => $_GET['prix']));
 
-			if ($maj) {
+			if ($maj == 'true') {
 				$msg = "Le jeu à bien été modifié.";
 			} else {
 				$msg = "Erreur, les modifications n'ont pas été prise en compte";

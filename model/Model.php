@@ -106,7 +106,7 @@ require_once(File::build_path(array('config', 'Conf.php')));
 				return true;
 
 			} catch (PDOException $e) {
-				return false;
+				return $e->getCode();
 			}
 		}
 

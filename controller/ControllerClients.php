@@ -55,14 +55,24 @@
 		    		$prenom = htmlspecialchars($_POST['prenom']);
 		    		$mail = htmlspecialchars($_POST['mail']);
 		    		$mdp = htmlspecialchars($_POST['mdp']);
+		    		$nonce = Security::generateRandomHex();
 
 					$create = ModelClients::save(array('pseudoClient' => $pseudo,
 													   'nomClient' => $nom,
 													   'prenomClient' => $prenom,
 													   'mailClient' => $mail,
 													   'mdpClient' => Security::chiffrer($mdp),
-													   'nonce' => NULL ));
+													   'nonce' => $nonce ));
 					if ($create == 'true') {
+
+						$mailEnvoi = '<p>Bonjour, et merci de vous être inscrit sur notre site. 
+						Voici un lien qui vous permet de vous connecter.</p>
+						<a href="' . File::build_path(array('index.php')) . '?controller=Clients&action=validate&pseudo=' . $pseudo . '&nonce=' . $nonce . 
+						'">http://blablabla</a>
+						<p>A bientôt sur notre site MacronMania ! Parce que c\'est notre projet !</p>';
+
+						mail($mail, 'Merci de votre inscription', $mailEnvoi);
+
 						$pagetitle = 'MacronMania | Inscription terminée';
 				    	$controller = 'Client';
 				    	$view = 'FinishInscription';
@@ -91,9 +101,37 @@
 	    /************************************************************************************/
 
 	    public static function validate() {
-	    	session_start();
-	    	
+	    	$pseudo = $_GET['pseudo'];
+	    	$nonce = $_GET['nonce'];
+	    	$newUser = ModelClients::select($pseudo);
 
+	    	if ($newUser == false) {
+	    		$pagetitle = 'MacronMania | Erreur';
+			    $controller = 'Jeux';
+			    $view = 'Erreur';
+				require (File::build_path(array('view', "view.php")));	
+	    	} else {
+		    	if ($newUser->getNonce() == $nonce) {
+		    		$update = ModelClients::update(array('pseudoClient' => $pseudo, 'nonce' => NULL));
+		    		if ($update == 'true') {
+		    			$msg = "Votre compte est validé ! Il ne vous reste plus qu'à vous connecter";
+		    			$pagetitle = 'MacronMania | Inscription validée';
+					    $controller = 'Client';
+					    $view = 'Connexion';
+						require (File::build_path(array('view', "view.php")));
+		    		} else {
+		    			$pagetitle = 'MacronMania | Erreur';
+					    $controller = 'Jeux';
+					    $view = 'Erreur';
+						require (File::build_path(array('view', "view.php")));
+		    		}
+		    	} else {
+		    		$pagetitle = 'MacronMania | Erreur';
+				    $controller = 'Jeux';
+				    $view = 'Erreur';
+					require (File::build_path(array('view', "view.php")));
+		    	}
+		    }
 	    }
 
 	    /************************************************************************************/
@@ -109,8 +147,10 @@
 	    		$user = ModelClients::connect($_POST['pseudo']);
 	    		if ($user == false) {
 	    			$connect = false;
+	    			$msg = "Login ou mot de passe incorrect. Veuillez réessayer";
 	    		} else if ($user[0]->getNonce() != NULL) {
 	    			$connect = false;
+	    			$msg = "Compte en attente de validation. Vérifiez vos mails !";
 	    		}
 
 	    		else {
@@ -136,6 +176,7 @@
 	    			}
 	    			else {
 	    				$connect = false;
+	    				$msg = "Login ou mot de passe incorrect. Veuillez réessayer";
 	    			}
 	    		}
 	    		if ($connect == false) {
@@ -194,10 +235,12 @@
 			$_SESSION['prenom'] = $client->getPrenom();
 			$_SESSION['mail'] = $client->getMail();
 
-			if ($maj) {
+			if ($maj == 'true') {
 				$msg = "<p>Vos informations ont bien été modifiés</p>";
+			} else if($maj == '20002') {
+				$msg = "<p>Erreur, l'adresse mail est déjà utilisée !";
 			} else {
-				$msg = "<p>Erreur, vos informations n'ont pas pu être modifiée</p>";
+				$msg = "<p>Erreur, vos informations n'ont pas pu être modifiées</p>";
 			}
 
 			$pagetitle = 'MacronMania | Modifié';
@@ -246,7 +289,7 @@
 			$Client = ModelClients::select($_SESSION['pseudo']);
 			$_SESSION['mdp'] = $Client->getMdp();
 
-			if ($maj) {
+			if ($maj == 'true') {
 				$msg = "<p>Le mot de passe a bien été modifié</p>";
 			} else {
 				$msg = "<p>Erreur, le mot de passe n'a pas été modifié</p>";
@@ -257,6 +300,21 @@
 	        $view = 'UpdatedMdp';
 	    	require_once(file::build_path(array('view', 'view.php')));
 
+		}
+
+		/************************************************************************************/
+
+		public static function delete() {
+			session_start();
+			$client = ModelClients::delete($_SESSION['pseudo']);
+			 
+	    	session_unset();
+			session_destroy();
+
+			$pagetitle = 'MacronMania | Supprimé';
+	        $controller = 'Client';
+	        $view = 'deleted';
+	    	require_once(file::build_path(array('view', 'view.php')));
 		}
 
 	}

@@ -23,5 +23,11 @@
 
 		<input class="modifClient" type="submit" value="Modifier le mot de passe" />
 	</form>
+	<form>
+		<input type="hidden" name="controller" value="Clients" />
+		<input type="hidden" name="action" value="delete" />
+
+		<input class="supprClient" type="submit" value="Supprimer mon compte" />
+	</form>
 
 </div>
