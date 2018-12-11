@@ -65,13 +65,15 @@
 													   'nonce' => $nonce ));
 					if ($create == 'true') {
 
-						$mailEnvoi = '<p>Bonjour, et merci de vous être inscrit sur notre site. 
-						Voici un lien qui vous permet de vous connecter.</p>
-						<a href="' . File::build_path(array('index.php')) . '?controller=Clients&action=validate&pseudo=' . $pseudo . '&nonce=' . $nonce . 
-						'">http://blablabla</a>
+					    $headers ='Content-Type: text/html; charset="iso-8859-1"'."\n";
+					    $headers .='Content-Transfer-Encoding: 8bit';
+
+						$mailEnvoi = '<p>Bonjour, et merci de vous être inscrit sur notre site.</p>
+						<p>Pour confirmer votre inscription, <a href="http://webinfo.iutmontp.univ-montp2.fr/~vergelym/projetPHP_v2/projet_macronmania/?controller=Clients&action=validate&pseudo=' . $pseudo . '&nonce=' . $nonce . 
+						'">c\'est par ici !</a></p>
 						<p>A bientôt sur notre site MacronMania ! Parce que c\'est notre projet !</p>';
 
-						mail($mail, 'Merci de votre inscription', $mailEnvoi);
+						mail($mail, 'Merci de votre inscription', $mailEnvoi, $headers);
 
 						$pagetitle = 'MacronMania | Inscription terminée';
 				    	$controller = 'Client';
@@ -194,6 +196,7 @@
 	    	session_start(); 
 	    	session_unset();
 			session_destroy();
+			setcookie(session_name(),'',time()-1);
 
 	    	require_once(File::build_path(array('model', 'ModelJeux.php')));
 	    	$allJeux = ModelJeux::selectAll();
@@ -313,7 +316,7 @@
 
 			$pagetitle = 'MacronMania | Supprimé';
 	        $controller = 'Client';
-	        $view = 'deleted';
+	        $view = 'Deleted';
 	    	require_once(file::build_path(array('view', 'view.php')));
 		}
 
