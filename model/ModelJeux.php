@@ -63,22 +63,30 @@
 		/************************************************************************************/	
 
 		public static function search() {
+			if (isset($_GET['plateforme']) && $_GET['plateforme'] != '0') $plateforme = $_GET['plateforme'];
+			if (isset($_GET['genre']) && $_GET['genre'] != '0') $genre = $_GET['genre'];
+			$termes = htmlspecialchars($_GET["termes"]); //pour sécuriser le formulaire contre les failles html
+			$termes = trim($termes); //pour supprimer les espaces dans la requête de l'internaute
+			$termes = strip_tags($termes); //pour supprimer les balises html dans la requête
 
-			 $_GET["termes"] = htmlspecialchars($_GET["termes"]); //pour sécuriser le formulaire contre les failles html
-			 $recherche = $_GET["termes"];
-			 $recherche = trim($recherche); //pour supprimer les espaces dans la requête de l'internaute
-			 $recherche = strip_tags($recherche); //pour supprimer les balises html dans la requête
+			if (isset($termes)) {
+				$termes = strtolower($termes); // mets les caractère en minuscule
+				$sql = "SELECT idJeu, nomJeu, plateforme, image FROM Jeux WHERE nomJeu LIKE :termes ";
+				if (isset($_GET['plateforme']) && $_GET['plateforme'] != '0') $sql .= "AND plateforme = :plateforme ";
+				if (isset($_GET['genre']) && $_GET['genre'] != '0') $sql .= "AND genre = :genre ";
+				$res = Model::$pdo -> prepare($sql);
 
-			if (isset($recherche)) {
-				 $recherche = strtolower($recherche); // mets les caractère en minuscule
-				 $res = Model::$pdo -> prepare("SELECT idJeu, nomJeu, plateforme, image FROM Jeux WHERE nomJeu LIKE ?"); //sélectionne les jeux qui contiennent des mots qui ressemblent à la requête du client.
-				 $res->execute(array("%".$recherche."%"));
-				 $res->setFetchMode(PDO::FETCH_CLASS, 'ModelJeux');
-				 $jeux = $res->fetchAll();
+				$values = array('termes' => '%'.$termes.'%');
+				if (isset($_GET['plateforme']) && $_GET['plateforme'] != '0') $values['plateforme'] = $plateforme;
+				if (isset($_GET['genre']) && $_GET['genre'] != '0') $values['genre'] = $genre;
 
-				 if (empty($res))
-				 	return false;
-				 return $jeux;
+				$res->execute($values);
+				$res->setFetchMode(PDO::FETCH_CLASS, 'ModelJeux');
+				$jeux = $res->fetchAll();
+
+				if (empty($res))
+					return false;
+				return $jeux;
 			}
 		}
 

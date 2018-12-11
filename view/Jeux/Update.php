@@ -1,4 +1,4 @@
-<h1><?php if($action == "update") echo "Modifier"; else echo "Ajouter un jeu"; ?></h1>
+<h1><?php if($action == "updated") echo "Modifier"; else echo "Ajouter un jeu"; ?></h1>
 
 <form class="formulaire" action="" method="get">
 
@@ -29,6 +29,6 @@
 
 	<input class="field" type="text" name="image" placeholder="Lien vers l'image" <?php echo 'value="' . $image . '"'; ?> /><br/>
 
-	<input class="field" type="submit" value="Modifier"/>
+	<input class="field" type="submit" <?php if($action == "updated") echo 'value="Modifier"'; else echo 'value="Ajouter"'; ?> />
 
 </form>

@@ -30,6 +30,7 @@
 				</div>
 		  	</form>
 
+		  	<a href="?action=customSearch">Recherche avancée</a>
 
 			<nav>
 				<?php

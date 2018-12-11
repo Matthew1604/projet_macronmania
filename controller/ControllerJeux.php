@@ -29,6 +29,16 @@
 
 	    /************************************************************************************/
 
+	    public static function customSearch() {
+	    	
+			$pagetitle = 'MacronMania | Recherche';
+	        $controller = 'Jeux';
+	        $view = 'CustomSearch';
+	    	require_once(file::build_path(array('view', 'view.php')));
+		}
+
+		/************************************************************************************/		
+
 	    public static function panier() {
 	    	if (isset($_COOKIE['panier']) && isset($_COOKIE['qtt'])) {
 		    	$panier = unserialize($_COOKIE['panier']);
