@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('config/Conf.php');
 
 // When debug is enabled display error message and stacktrace

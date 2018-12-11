@@ -158,8 +158,7 @@
 	    		else {
 	    			$user = $user[0];
 	    			if ($user->getMdp() == Security::chiffrer($_POST['mdp'])) {
-	    					    				
-	    				session_start();
+	    				
 	    				$_SESSION['pseudo'] = $user->getPseudo();
 	    				if ($_SESSION['pseudo'] == 'admin') $_SESSION['isAdmin'] = true;
 	    				else $_SESSION['isAdmin'] = false;
@@ -193,7 +192,6 @@
 	    /************************************************************************************/
 
 	    public static function Deconnexion() {
-	    	session_start(); 
 	    	session_unset();
 			session_destroy();
 			setcookie(session_name(),'',time()-1);
@@ -209,7 +207,6 @@
 		/************************************************************************************/
 
 		public static function update() {
-			session_start();
 			$Client = ModelClients::select($_SESSION['pseudo']);
 			$pseudo = $Client->getPseudo();
 			$nom = $Client->getNom();
@@ -227,7 +224,6 @@
 		/************************************************************************************/
 
 		public static function updated() {
-			session_start();
 			$maj = ModelClients::update(array('pseudoClient' => $_SESSION['pseudo'],
 											  'nomClient' => htmlspecialchars($_GET['nom']),
 											  'prenomClient' => htmlspecialchars($_GET['prenom']),
@@ -255,7 +251,6 @@
 		/************************************************************************************/
 
 		public static function updateMdp() {
-			session_start();
 			$Client = ModelClients::select($_SESSION['pseudo']);
 			$pseudo = $Client->getPseudo();
 
@@ -269,7 +264,6 @@
 		/************************************************************************************/
 
 		public static function updatedMdp() {
-			session_start();
 
 			$Client = ModelClients::select($_SESSION['pseudo']);
 
@@ -308,7 +302,6 @@
 		/************************************************************************************/
 
 		public static function delete() {
-			session_start();
 			$client = ModelClients::delete($_SESSION['pseudo']);
 			 
 	    	session_unset();

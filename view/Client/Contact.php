@@ -1,4 +1,3 @@
-
 <h1>Contact</h1>
 
 <form class = "formulaire" method ="post" action = "">

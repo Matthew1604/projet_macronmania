@@ -1,4 +1,4 @@
-<?php if(!isset($_SESSION['pseudo'])) session_start(); 
+<?php
 	  require_once(File::build_path(array('controller', 'ControllerClients.php')));
 	  require_once(File::build_path(array('controller', 'ControllerJeux.php')));
 ?>
