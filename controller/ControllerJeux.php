@@ -30,11 +30,14 @@
 	    /************************************************************************************/
 
 	    public static function panier() {
-	    	$panier = unserialize($_COOKIE['panier']);
-	    	$listeJeux = array();
-	    	foreach ($panier as $value) {
-	    		array_push($listeJeux, ModelJeux::select($value));
-	    	}
+	    	if (isset($_COOKIE['panier']) && isset($_COOKIE['qtt'])) {
+		    	$panier = unserialize($_COOKIE['panier']);
+		    	$listeJeux = array();
+		    	foreach ($panier as $value) {
+		    		array_push($listeJeux, ModelJeux::select($value));
+		    	}
+		    	$quantite = unserialize($_COOKIE['qtt']);
+		    } 
 
 	    	$pagetitle = 'MacronMania | Panier';
 	        $controller = 'Jeux';
@@ -45,17 +48,29 @@
 	    /************************************************************************************/
 
 	    public static function addCart() {
-
-	    	if (!isset($_COOKIE['panier'])) {
+	    	if (!isset($_COOKIE['panier']) || !isset($_COOKIE['qtt'])) {
 	    		$panier = array($_GET['id']);
+	    		$quantite = array($_GET['id'] => 1);
 	    		$panier = serialize($panier);
+	    		$quantite = serialize($quantite);
 	    		setcookie("panier", $panier, time() + 86400);
+	    		setcookie("qtt", $quantite, time() + 86400);
 	    	}
 	    	else {
 	    		$panier = unserialize($_COOKIE['panier']);
-	    		array_push($panier, $_GET['id']);
+	    		$quantite = unserialize($_COOKIE['qtt']);
+
+	    		if (isset($quantite[$_GET['id']])) {
+	    			$quantite[$_GET['id']] += 1;
+	    		} else {
+	    			$quantite[$_GET['id']] = 1;
+	    			array_push($panier, $_GET['id']);
+				}
+	    		
 	    		$panier = serialize($panier);
+	    		$quantite = serialize($quantite);
 	    		setcookie("panier", $panier, time() + 86400);
+	    		setcookie("qtt", $quantite, time() + 86400);
 	    	}
 
 	    	self::read();
@@ -65,15 +80,37 @@
 
 	    public static function delCart() {
 	    	$panier = unserialize($_COOKIE['panier']);
-	    	$panier = array_diff($panier, array($_GET['id']));
+	    	$quantite = unserialize($_COOKIE['qtt']);
+
+	    	if ($quantite[$_GET['id']] > 1) {
+	    		$quantite[$_GET['id']] -= 1;
+	    	} else {
+	    		unset($panier[array_search($_GET['id'], $panier)]);
+	    		unset($quantite[$_GET['id']]);
+	    	}
+
 	    	$panier = serialize($panier);
-	    	setcookie("panier", $panier, time() + 86400);
+    		$quantite = serialize($quantite);
+    		setcookie("panier", $panier, time() + 86400);
+    		setcookie("qtt", $quantite, time() + 86400);
 
 	    	$pagetitle = 'MacronMania | Panier';
 	        $controller = 'Jeux';
 	        $view = 'DelPanier';
 	    	require_once(file::build_path(array('view', 'view.php')));
 	    }
+
+		/************************************************************************************/
+
+		public static function delAllCart() {
+			setcookie("panier", '', time() - 1);
+    		setcookie("qtt", '', time() - 1);
+
+    		$pagetitle = 'MacronMania | Panier';
+	        $controller = 'Jeux';
+	        $view = 'DelPanier';
+	    	require_once(file::build_path(array('view', 'view.php')));
+		}	    
 
 	    /************************************************************************************/
 

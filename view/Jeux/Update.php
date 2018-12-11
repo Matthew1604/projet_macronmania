@@ -8,13 +8,13 @@
 	<input class="field" type="text" name="nom" placeholder="Nom du jeu" <?php echo 'value="' . $nomJeu . '"'; ?> /><br/>
 
 	<select class="field" id="plateforme" name="plateforme" value="PS4">
-		<option value="0">--Genre--</option>
+		<option value="0">--Plateforme--</option>
 	    <option value="PS4" <?php if ($plateforme == "PS4") echo "selected" ?> >PS4</option>
 	    <option value="Xbox One" <?php if ($plateforme == "Xbox One") echo "selected" ?> >Xbox One</option>
   	</select><br/>
 
 	<select class="field" id="genre" name="genre">
-		<option value="0">--Plateforme--</option>
+		<option value="0">--Genre--</option>
 	    <option value="Action / Aventure" <?php if ($genre == "Action / Aventure") echo "selected" ?> >Action / Aventure</option>
 	    <option value="Course" <?php if ($genre == "Course") echo "selected" ?> >Course</option>
 	    <option value="FPS" <?php if ($genre == "FPS") echo "selected" ?> >FPS</option>
