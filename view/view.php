@@ -40,7 +40,7 @@
 					else echo '<div><a href="?controller=Clients&action=Contact">Contact</a></div>';
 
 				?>
-				<div><?php if(isset($_SESSION['pseudo'])) echo '<a href="?controller=Clients&action=Compte">Mon compte</a>'; else echo '<a href="?controller=Clients&action=Connexion">Se connecter</a>'; ?></div>
+				<div><?php if(isset($_SESSION['pseudo'])) echo '<a href="?controller=Clients&action=Compte"> <img class = "compte" src = images/compte.png > </a>'; else echo '<a href="?controller=Clients&action=Connexion">Se connecter</a>'; ?></div>
 				<?php 
 
 					if(isset($_SESSION['pseudo']))
