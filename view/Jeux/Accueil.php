@@ -9,10 +9,12 @@
   
 	foreach ($allJeux as $v) {
 
-		echo '<div><a href="?action=read&id=' . $v->getId() . '"><img src="' . $v->getImage() . '" /></a><br /><p><a class="nomJeu" href="?action=read&id=' . $v->getId() . '">' . $v->getNomJeu() . " | " . $v->getPlateforme() . "</a>";
+		echo '<div><a href="?action=read&id=' . $v->getId() . '"><img src="' . $v->getImage() . 
+		'" /></a><br /><p><a class="nomJeu" href="?action=read&id=' . $v->getId() . '">' . $v->getNomJeu() . " | " . 
+		$v->getPlateforme() . "</a>";
 
     if (isset($_SESSION['pseudo']) && $_SESSION['isAdmin'])
-      echo ' [<a href="?action=update&id=' . $v->getId() . '"> Modifier </a>] [<a href="?action=delete&id=' . $v->getId() . '"> Supprimer </a>]</p></div>';
+      echo ' [<a href="?action=update&id=' . $v->getId() . '"> Modifier </a>] [<a href="?action=delete&id=' . $v->getId() . '" style="color:red"> Supprimer </a>]</p></div>';
     else
       echo "</p></div>";
 

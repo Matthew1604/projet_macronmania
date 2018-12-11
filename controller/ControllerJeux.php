@@ -13,7 +13,7 @@
 	        $pagetitle = 'MacronMania | Accueil';
 	        $controller = 'Jeux';
 	        $view = 'Accueil';
-	        require (file::build_path(array('view', 'view.php')));  //"redirige" vers la vue
+	        require_once(file::build_path(array('view', 'view.php')));  //"redirige" vers la vue
 	    }
 
 	    /************************************************************************************/
@@ -29,8 +29,58 @@
 
 	    /************************************************************************************/
 
+	    public static function panier() {
+	    	$panier = unserialize($_COOKIE['panier']);
+	    	$listeJeux = array();
+	    	foreach ($panier as $value) {
+	    		array_push($listeJeux, ModelJeux::select($value));
+	    	}
+
+	    	$pagetitle = 'MacronMania | Panier';
+	        $controller = 'Jeux';
+	        $view = 'Panier';
+	    	require_once(file::build_path(array('view', 'view.php')));
+	    }
+
+	    /************************************************************************************/
+
+	    public static function addCart() {
+
+	    	if (!isset($_COOKIE['panier'])) {
+	    		$panier = array($_GET['id']);
+	    		$panier = serialize($panier);
+	    		setcookie("panier", $panier, time() + 86400);
+	    	}
+	    	else {
+	    		$panier = unserialize($_COOKIE['panier']);
+	    		array_push($panier, $_GET['id']);
+	    		$panier = serialize($panier);
+	    		setcookie("panier", $panier, time() + 86400);
+	    	}
+
+	    	self::read();
+	    }
+
+	    /************************************************************************************/
+
+	    public static function delCart() {
+	    	$panier = unserialize($_COOKIE['panier']);
+	    	$panier = array_diff($panier, array($_GET['id']));
+	    	$panier = serialize($panier);
+	    	setcookie("panier", $panier, time() + 86400);
+
+	    	$pagetitle = 'MacronMania | Panier';
+	        $controller = 'Jeux';
+	        $view = 'DelPanier';
+	    	require_once(file::build_path(array('view', 'view.php')));
+	    }
+
+	    /************************************************************************************/
+
 	    public static function read() {
+	    	if ($_GET['action'] == 'addCart') $msg = '<p style="text-align:center">Ajouté au panier ! Parce que c\'est notre projet</p>';
 	    	$Jeu = ModelJeux::select($_GET['id']);
+	    	$idJeu = $Jeu->getId();
 	    	$nomJeu = $Jeu->getNomJeu();
 	    	$plateforme = $Jeu->getPlateforme();
 	    	$genre = $Jeu->getGenre();

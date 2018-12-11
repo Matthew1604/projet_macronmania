@@ -20,6 +20,9 @@
 </div>
 
 <form class="ajoutPanier">
-	<input type="hidden" name="action" value="addCart">
-	<input class="field" type="submit" value="Ajouter au panier">
+	<input type="hidden" name="action" value="addCart" />
+	<input type="hidden" name="id" <?php echo 'value="' . $idJeu . '"'; ?> />
+	<input class="field" type="submit" value="Ajouter au panier" />
 </form>
+
+<?php if(isset($msg)) echo "<p>$msg</p>" ?>
