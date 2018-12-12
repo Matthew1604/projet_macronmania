@@ -13,7 +13,7 @@ header{
 	display:flex;
 	align-items: center;
 	justify-content: space-around;
-	height:55px;
+	height:60px;
 	padding-bottom: 5px;
 	padding-top: 5px;
 	position: fixed;
@@ -75,7 +75,7 @@ a:visited {
 	text-decoration: none;
 	color : #27416b;
 	font-weight: bold;
-	
+
 }
 
 .nomJeu {
