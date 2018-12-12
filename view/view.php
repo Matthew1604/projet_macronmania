@@ -36,21 +36,21 @@
 				<?php
 
 					if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == 'admin') {
-						echo '<div><a href="?action=create">Ajouter un jeu</a></div>';
+						echo '<div><a href="?action=create"><img class = "logo" src = "images/ajouter.png" ></a></div>';
 					}
-					else echo '<div><a href="?controller=Clients&action=Contact">Contact</a></div>';
+					else echo '<div><a href="?controller=Clients&action=Contact"><img class = "logo" src = "images/contact.png" ></a></div>';
 
 				?>
-				<div><?php if(isset($_SESSION['pseudo'])) echo '<a href="?controller=Clients&action=Compte"> <img class = "compte" src = images/compte.png > </a>'; else echo '<a href="?controller=Clients&action=Connexion"><img class = "onoff" src = images/on.png ></a>'; ?></div>
+				<div><?php if(isset($_SESSION['pseudo'])) echo '<a href="?controller=Clients&action=Compte"> <img class = "logo" src = "images/compte.png" > </a>'; else echo '<a href="?controller=Clients&action=Connexion"><img class = "logo" src = "images/on.png" ></a>'; ?></div>
 				<?php 
 
 					if(isset($_SESSION['pseudo']))
-						echo '<div><a href="?controller=Clients&action=Deconnexion"><img class = "onoff" src = images/off.png ></a></div>';
+						echo '<div><a href="?controller=Clients&action=Deconnexion"><img class = "logo" src = "images/off.png" ></a></div>';
 
 				?>
 			</nav>
 		    
-		    <a href='?action=panier'>PANIER</a>
+		    <a href='?action=panier'><img class = "logo" src = "images/panier.png" ></a>
 
 		</header>
 

@@ -66,13 +66,16 @@ body{
 }
 
 a {
-	color: blue;
 	text-decoration: none;
+	color : #27416b;
+	font-weight: bold;
 }
 
 a:visited {
-	color: blue;
 	text-decoration: none;
+	color : #27416b;
+	font-weight: bold;
+	
 }
 
 .nomJeu {
@@ -275,20 +278,8 @@ footer {
 
 /*******images******/
 
+
 .logo {
-	width: 65px;
-	height: 60px;
-	margin-top: 3px;
-}
-
-.compte {
-	width: 65px;
-	height: 60px;
-	margin-top: 3px;
-}
-
-
-.onoff {
 	width: 65px;
 	height: 60px;
 	margin-top: 3px;
