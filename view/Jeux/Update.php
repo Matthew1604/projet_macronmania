@@ -1,13 +1,13 @@
 <h1><?php if($action == "updated") echo "Modifier"; else echo "Ajouter un jeu"; ?></h1>
 
-<form class="formulaire" action="" method="get">
+<form class="formulaire">
 
 	<input type="hidden" name="action" <?php echo 'value="' . $action . '"'; ?> />
 	<?php if (isset($_GET['id'])) echo '<input type="hidden" name="id" value="' . $_GET['id'] . '" />'; ?>
 
 	<input class="field" type="text" name="nom" placeholder="Nom du jeu" <?php echo 'value="' . $nomJeu . '"'; ?> /><br/>
 
-	<select class="field" id="plateforme" name="plateforme" value="PS4">
+	<select class="field" id="plateforme" name="plateforme">
 		<option value="0">--Plateforme--</option>
 	    <option value="PS4" <?php if ($plateforme == "PS4") echo "selected" ?> >PS4</option>
 	    <option value="Xbox One" <?php if ($plateforme == "Xbox One") echo "selected" ?> >Xbox One</option>

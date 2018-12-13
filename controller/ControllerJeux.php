@@ -170,9 +170,9 @@
 									   	  'prix' => htmlspecialchars($_GET['prix'])));
 
 	    	if ($save == true) {
-	    		$msg = "Le jeu a bien été ajouté";
+	    		$msg = "<p>Le jeu a bien été ajouté</p>";
 	    	} else {
-	    		$msg = "Erreur, le jeu n'a pas été créé";
+	    		$msg = "<p>Erreur, le jeu n'a pas été créé</p>";
 	    	}
 	    	$pagetitle = 'MacronMania | Créé';
 		    $controller = 'Jeux';
@@ -210,9 +210,9 @@
 										   'prix' => $_GET['prix']));
 
 			if ($maj == 'true') {
-				$msg = "Le jeu à bien été modifié.";
+				$msg = "<p>Le jeu à bien été modifié.</p>";
 			} else {
-				$msg = "Erreur, les modifications n'ont pas été prise en compte";
+				$msg = "<p>Erreur, les modifications n'ont pas été prise en compte</p>";
 			}
 
 			$pagetitle = 'MacronMania | Modifié';
@@ -225,9 +225,9 @@
 
 	    public static function delete() {
 	    	if(ModelJeux::delete($_GET['id'])) {
-	    		$msg = "Le jeu a bien été supprimé";
+	    		$msg = "<p>Le jeu a bien été supprimé</p>";
 	    	} else {
-	    		$msg = "Erreur, le jeu n'a pas été supprimé";
+	    		$msg = "<p>Erreur, le jeu n'a pas été supprimé</p>";
 	    	}
 	    	$pagetitle = 'MacronMania | Supprimé';
 	        $controller = 'Jeux';

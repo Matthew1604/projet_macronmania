@@ -69,7 +69,7 @@
 					    $headers .='Content-Transfer-Encoding: 8bit';
 
 						$mailEnvoi = '<p>Bonjour, et merci de vous être inscrit sur notre site.</p>
-						<p>Pour confirmer votre inscription, <a href="http://webinfo.iutmontp.univ-montp2.fr/~vergelym/projetPHP_v2/projet_macronmania/?controller=Clients&action=validate&pseudo=' . $pseudo . '&nonce=' . $nonce . 
+						<p>Pour confirmer votre inscription, <a href="http://webinfo.iutmontp.univ-montp2.fr/~vergelym/eCommerce/?controller=Clients&action=validate&pseudo=' . $pseudo . '&nonce=' . $nonce . 
 						'">c\'est par ici !</a></p>
 						<p>A bientôt sur notre site MacronMania ! Parce que c\'est notre projet !</p>';
 
@@ -82,7 +82,7 @@
 				    } else {
 				    	if ($create == 20001) $msg = "Le pseudo est déjà utilisé !";
 				    	else if ($create == 20002) $msg = "L'adresse e-mail est déjà utilisée sur un autre compte !";
-				    	else $msg = "L'inscription n'a pas aboutie";
+				    	else $msg = "<p>L'inscription n'a pas aboutie</p>";
 
 						$pagetitle = 'MacronMania | Inscription';
 				    	$controller = 'Client';
@@ -90,7 +90,7 @@
 						require (File::build_path(array('view', "view.php")));
 				    }
 				} else {
-					$msg = "Les mots de passe doivent être les mêmes";
+					$msg = "<p>Les mots de passe doivent être les mêmes</p>";
 
 					$pagetitle = 'MacronMania | Inscription';
 			    	$controller = 'Client';
@@ -116,7 +116,7 @@
 		    	if ($newUser->getNonce() == $nonce) {
 		    		$update = ModelClients::update(array('pseudoClient' => $pseudo, 'nonce' => NULL));
 		    		if ($update == 'true') {
-		    			$msg = "Votre compte est validé ! Il ne vous reste plus qu'à vous connecter";
+		    			$msg = "<p>Votre compte est validé ! Il ne vous reste plus qu'à vous connecter</p>";
 		    			$pagetitle = 'MacronMania | Inscription validée';
 					    $controller = 'Client';
 					    $view = 'Connexion';
@@ -146,18 +146,18 @@
 	    	    require(File::build_path(array('view', 'view.php')));
 	    	}
 	    	else {
-	    		$user = ModelClients::connect($_POST['pseudo']);
+	    		$user = ModelClients::connect(htmlspecialchars($_POST['pseudo']));
 	    		if ($user == false) {
 	    			$connect = false;
-	    			$msg = "Login ou mot de passe incorrect. Veuillez réessayer";
+	    			$msg = "<p>Login ou mot de passe incorrect. Veuillez réessayer</p>";
 	    		} else if ($user[0]->getNonce() != NULL) {
 	    			$connect = false;
-	    			$msg = "Compte en attente de validation. Vérifiez vos mails !";
+	    			$msg = "<p>Compte en attente de validation. Vérifiez vos mails !</p>";
 	    		}
 
 	    		else {
 	    			$user = $user[0];
-	    			if ($user->getMdp() == Security::chiffrer($_POST['mdp'])) {
+	    			if ($user->getMdp() == Security::chiffrer(htmlspecialchars($_POST['mdp']))) {
 	    				
 	    				$_SESSION['pseudo'] = $user->getPseudo();
 	    				if ($_SESSION['pseudo'] == 'admin') $_SESSION['isAdmin'] = true;
@@ -177,7 +177,7 @@
 	    			}
 	    			else {
 	    				$connect = false;
-	    				$msg = "Login ou mot de passe incorrect. Veuillez réessayer";
+	    				$msg = "<p>Login ou mot de passe incorrect. Veuillez réessayer</p>";
 	    			}
 	    		}
 	    		if ($connect == false) {

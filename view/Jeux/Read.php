@@ -4,7 +4,7 @@
 
 <?php
 	
-	echo '<div><img src="' . $image . '" /></div>';
+	echo '<div><img alt="imgJeu" src="' . $image . '" /></div>';
 	echo '<div><p>Nom : ' . $nomJeu . '</p>';
 	echo '<p>Plateforme : ' . $plateforme . '</p>';
 	echo '<p>Genre : ' . $genre . '</p>';

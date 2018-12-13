@@ -9,7 +9,7 @@
   
 	foreach ($allJeux as $v) {
 
-		echo '<div><a href="?action=read&id=' . $v->getId() . '"><img src="' . $v->getImage() . 
+		echo '<div><a href="?action=read&id=' . $v->getId() . '"><img alt="imgJeu" src="' . $v->getImage() . 
 		'" /></a><br /><p><a class="nomJeu" href="?action=read&id=' . $v->getId() . '">' . $v->getNomJeu() . " | " . 
 		$v->getPlateforme() . "</a>";
 
